@@ -1,0 +1,86 @@
+.listado {
+    margin-top: 20px;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-bottom: none;
+}
+
+.toolbar .nuevo, .toolbar button {
+    background-color: var(--seconday_color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.toolbar .nuevo{
+    text-decoration: none;
+}
+
+.toolbar button:hover {
+    background-color: #3e8e41;
+}
+
+.toolbar__filtro__container {
+    display: flex;
+    align-items: center;
+}
+
+.toolbar__filtro__container input, .toolbar__filtro__container select {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+.toolbar__filtro__container button {
+    background-color: var(--seconday_color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.toolbar__filtro__container button:hover {
+    background-color: #3e8e41;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.tabla__encabezado {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla__cuerpo {
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla__fila {
+    border-top: 1px solid #ddd;
+}
+
+.tabla__fila:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla th, .tabla td {
+    padding: 8px;
+    text-align: left;
+}
+
+.tabla th {
+    font-weight: bold;
+}

@@ -1,0 +1,51 @@
+.sidebar {
+    position: fixed;
+    top: 64px;
+    width: 250px;
+    height: calc(100vh - 64px);
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    padding-top: 10px;
+}
+
+.sidebar__brandLink {
+    text-decoration: none;
+}
+
+.navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navListItem {
+    margin-bottom: 10px;
+}
+
+.navListItemLink {
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    transition: background-color 0.2s ease;
+}
+
+.navListItemLink:hover {
+    background-color: #eaeaea;
+}
+
+.navListItemLink svg {
+    margin-right: 10px;
+}
+
+.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.active svg {
+    color: #fff;
+}
