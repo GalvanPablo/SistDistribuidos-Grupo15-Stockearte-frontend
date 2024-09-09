@@ -10,7 +10,6 @@ const DetalleTienda = () => {
 
     const tiendID = detallesVisualizacion.id;
 
-
     return (
         <div>
             <h1>DetalleTienda</h1>

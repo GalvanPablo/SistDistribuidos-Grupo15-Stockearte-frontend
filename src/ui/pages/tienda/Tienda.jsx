@@ -31,7 +31,7 @@ const Tienda = () => {
 
     return (
         <>
-            <h1>Listado de tiendas</h1>
+            <h1>Listado de Tiendas</h1>
             <div className={styles.listado}>
                 
                 <div className={styles.toolbar}>

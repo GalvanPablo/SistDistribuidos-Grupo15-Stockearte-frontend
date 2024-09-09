@@ -1,10 +1,21 @@
 import React from 'react'
 
-import style from './DetalleProducto.module.css'
+import styles from './DetalleProducto.module.css'
+
+import { useParams } from 'react-router-dom'
+import Producto from '../Producto'
 
 const DetalleProducto = () => {
+    const detallesVisualizacion = useParams();
+
+    const productoId = detallesVisualizacion.id;
+
     return (
-        <div>DetalleProducto</div>
+        <div>
+            <h1>DetalleProducto</h1>
+            <p>{productoId}</p>
+        </div>
+        
     )
 }
 

@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { NavBar, SideBar } from './ui/layout';
 
 // Paginas
-import { Auth, Tienda, DetalleTienda, Producto, Usuario } from './ui/pages';
+import { Auth, Tienda, DetalleTienda, Producto, Usuario, DetalleProducto } from './ui/pages';
 
 import './App.css';
 function App() {
@@ -31,6 +31,7 @@ function App() {
                                 <Route path="/tiendas/tienda/:id" element={<DetalleTienda />} />
 
                                 <Route path='/productos' element={<Producto />} />
+                                <Route path="/productos/producto/:id" element={<DetalleProducto />} />
 
                                 <Route path='/usuarios' element={<Usuario />} />
 
