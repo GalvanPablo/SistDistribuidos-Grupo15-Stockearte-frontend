@@ -75,6 +75,7 @@ const Producto = () => {
                   <th>Nombre</th>
                   <th>Talle</th>
                   <th>Color</th>
+                  <th>Tienda</th>
                   <th></th>
                 </tr>
                 </thead>
@@ -86,6 +87,7 @@ const Producto = () => {
                                 nombre={producto.nombre}
                                 talle={producto.talle}
                                 color={producto.color}
+                                tienda={producto.tienda}
                             />
                         ))}
                 </tbody>
