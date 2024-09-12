@@ -8,8 +8,11 @@ import avatarDefault from './../../../assets/img/avatar.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBoxesStacked } from '@fortawesome/free-solid-svg-icons'
 
+import { useSelector } from 'react-redux';
+
 const NavBar = () => {
-    const avatarUsuario = null;
+    const nombre = useSelector(state => state.auth.nombre);
+
     return (
         <header className={styles.navbar}>
             <div className={styles.brand}>
@@ -19,9 +22,9 @@ const NavBar = () => {
                 </Link>
             </div>
             <div className={styles.user}>
-                <span className={styles.user__name}>Nombre usuario</span>
+                <span className={styles.user__name}>{nombre?nombre:'Usuario'}</span>
                 <div className={styles.user__image}>
-                    <img src={avatarUsuario ? avatarUsuario : avatarDefault} alt="avatar usuario" />
+                    <img src={avatarDefault} alt="avatar usuario" />
                 </div>
             </div>
         </header>

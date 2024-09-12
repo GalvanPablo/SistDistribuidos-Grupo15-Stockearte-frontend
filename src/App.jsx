@@ -10,9 +10,13 @@ import { NavBar, SideBar } from './ui/layout';
 // Paginas
 import { Auth, Tienda, NuevaTienda, DetalleTienda, Producto, Usuario, DetalleProducto } from './ui/pages';
 
+import { API_AUTH } from './data/api';
+
 import './App.css';
 function App() {
-    let isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    // const rol = useSelector(state => state.auth.rol);
+    const deCentral = useSelector(state => state.auth.rol) == API_AUTH.ROLES[1];
 
     return (
         <BrowserRouter>
@@ -27,14 +31,19 @@ function App() {
                                 <Route path='/auth' element={<Navigate to="/tiendas" />} />
                                 <Route path='/' element={<Navigate to="/tiendas" />} />
 
-                                <Route path='/tiendas' element={<Tienda />} />
-                                <Route path='/tiendas/nueva' element={<NuevaTienda />} />
-                                <Route path="/tiendas/tienda/:id" element={<DetalleTienda />} />
+                                {deCentral && (
+                                    <>
+                                        <Route path='/tiendas' element={<Tienda />} />
+                                        <Route path='/tiendas/nueva' element={<NuevaTienda />} />
+                                        <Route path="/tiendas/tienda/:id" element={<DetalleTienda />} />
+
+                                        <Route path='/usuarios' element={<Usuario />} />
+                                    </>
+                                )}
 
                                 <Route path='/productos' element={<Producto />} />
                                 <Route path="/productos/producto/:id" element={<DetalleProducto />} />
 
-                                <Route path='/usuarios' element={<Usuario />} />
 
                             </Routes>
                         </div>

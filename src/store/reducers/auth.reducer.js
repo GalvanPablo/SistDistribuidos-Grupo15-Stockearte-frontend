@@ -3,7 +3,9 @@ import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../actions/auth.action';
 // Definir el estado inicial del reducer
 const initialState = {
     isAuthenticated: false,
-    token: null
+    nombre: null,
+    rol: null
+    // token: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -12,18 +14,22 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: true,
+                nombre: action.nombre,
+                rol: action.rol
             };
         case LOGIN_FAILURE:
             // sessionStorage.removeItem('token');
             return {
                 ...state,
                 isAuthenticated: false,
+                nombre: null
             };
         case LOGOUT:
             // sessionStorage.removeItem('token');
             return {
                 ...state,
                 isAuthenticated: false,
+                nombre: null
             };
         default:
             return state;
