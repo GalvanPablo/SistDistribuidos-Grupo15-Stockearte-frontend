@@ -64,6 +64,11 @@
     border-bottom: 1px solid #ddd;
 }
 
+.columna_acciones {
+    width: 100px;
+}
+
+
 .tabla__cuerpo {
     border-bottom: 1px solid #ddd;
 }

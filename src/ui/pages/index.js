@@ -1,6 +1,7 @@
 export { default as Auth } from './auth/Auth'
 
 export { default as Tienda } from './tienda/Tienda'
+export { default as NuevaTienda } from './tienda/nueva/NuevaTienda'
 export { default as DetalleTienda } from './tienda/detalle/DetalleTienda'
 
 export { default as Producto } from './producto/Producto'

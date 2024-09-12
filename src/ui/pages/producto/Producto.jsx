@@ -8,7 +8,7 @@ import styles from './Producto.module.css'
 import { Link } from 'react-router-dom';
 
 const Producto = () => {
-    const Item = ({ codigo, nombre, talle, color, tienda}) => (
+    const Item = ({ codigo, nombre, talle, color, tienda }) => (
         <tr className={styles.tabla__fila}>
             <td>{codigo}</td>
             <td>{nombre}</td>
@@ -27,60 +27,60 @@ const Producto = () => {
         let resultado = '';
         const caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const carLon = caracteres.length;
-    
+
         for (let i = 0; i < longitud; i++) {
-    
+
             // Genero un indice random
             const aux = Math.floor(Math.random() * carLon);
-    
+
             resultado += caracteres.charAt(aux);
         }
-    
+
         return resultado;
     }
-    
+
     const codAleatorio = traerString(10);
     const codAleatorio1 = traerString(10);
     const codAleatorio2 = traerString(10);
 
     const productos = [
-        { codigo: codAleatorio, nombre: "Remera", talle: "M", color: "negro", tienda: "Sucursal Avellaneda"},
-        { codigo: codAleatorio1, nombre: "Pantalon", talle: "M", color: "rojo", tienda: "Sucursal Avellaneda"},
-        { codigo: codAleatorio2, nombre: "Remera", talle: "XL", color: "blanco", tienda: "Sucursal Quilmes"},
+        { codigo: codAleatorio, nombre: "Remera", talle: "M", color: "negro", tienda: "Sucursal Avellaneda" },
+        { codigo: codAleatorio1, nombre: "Pantalon", talle: "M", color: "rojo", tienda: "Sucursal Avellaneda" },
+        { codigo: codAleatorio2, nombre: "Remera", talle: "XL", color: "blanco", tienda: "Sucursal Quilmes" },
     ];
 
     return (
-     <>
-      <h1>Listado de Productos</h1>
-          <div className={styles.listado}>
+        <>
+            <h1>Listado de Productos</h1>
+            <div className={styles.listado}>
 
-           <div className={styles.toolbar}>
-               <Link to={`/productos/nueva`} className={styles.nuevo}>Nuevo Producto</Link>
+                <div className={styles.toolbar}>
+                    <Link to={`/productos/nueva`} className={styles.nuevo}>Nuevo Producto</Link>
 
-                 <div className={styles.toolbar__filtro__container}>
-                     <input type="text" name="" id="" placeholder='codigo'/>
-                     <input type="text" name="" id="" placeholder='nombre'/>
-                     <input type="text" name="" id="" placeholder='talle'/>
-                     <input type="text" name="" id="" placeholder='color'/>
-                       <button>
-                          <FontAwesomeIcon icon={faFilter} />
-                       </button>
-                 </div>
-            </div>
-           
-            <table className={styles.tabla}>
-              <thead className={styles.tabla_encabezado}>
-                <tr>
-                  <th>Código</th>
-                  <th>Nombre</th>
-                  <th>Talle</th>
-                  <th>Color</th>
-                  <th>Tienda</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody className={styles.tabla__cuerpo}>
-                {productos.map((producto, index) => (
+                    <div className={styles.toolbar__filtro__container}>
+                        <input type="text" name="" id="" placeholder='codigo' />
+                        <input type="text" name="" id="" placeholder='nombre' />
+                        <input type="text" name="" id="" placeholder='talle' />
+                        <input type="text" name="" id="" placeholder='color' />
+                        <button>
+                            <FontAwesomeIcon icon={faFilter} />
+                        </button>
+                    </div>
+                </div>
+
+                <table className={styles.tabla}>
+                    <thead className={styles.tabla_encabezado}>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Talle</th>
+                            <th>Color</th>
+                            <th>Tienda</th>
+                            <th className={styles.columna_acciones}>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody className={styles.tabla__cuerpo}>
+                        {productos.map((producto, index) => (
                             <Item
                                 key={index}
                                 codigo={producto.codigo}
@@ -90,10 +90,10 @@ const Producto = () => {
                                 tienda={producto.tienda}
                             />
                         ))}
-                </tbody>
-            </table>
-         </div>
-    </>
+                    </tbody>
+                </table>
+            </div>
+        </>
     )
 }
 
