@@ -5,3 +5,9 @@ export const API_TIENDA = {
     LISTADO: API_URL + 'tiendas/listado',
     // GET_BY_ID: (id) => API_URL + `dispositivos/estacionamiento/${id}`,
 }
+
+export const API_PRODUCTO = {
+    ALTA: API_URL + 'producto/alta',
+    LISTADO: API_URL + 'productos/listado',
+    
+}

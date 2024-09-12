@@ -7,6 +7,8 @@ import styles from './Producto.module.css'
 
 import { Link } from 'react-router-dom';
 
+import { API_PRODUCTO } from '../../../data/api'
+
 const Producto = () => {
     const Item = ({ codigo, nombre, talle, color, tienda }) => (
         <tr className={styles.tabla__fila}>
@@ -23,7 +25,33 @@ const Producto = () => {
         </tr>
     );
 
-    function traerString(longitud) {
+    const [productos, setProductos] = React.useState([]);
+
+    React.useEffect(() => {
+        // setTiendas([
+        //     { codigo: "ABCDE1234", nombre: "Sucursal Lanús", estado: "Habilitada" },
+        //     { codigo: "FGHIJ5678", nombre: "Sucursal Avellaneda", estado: "Deshabilitada" },
+        //     { codigo: "KLMNOP9012", nombre: "Sucursal Quilmes", estado: "Habilitada" },
+        // ])
+
+        fetch(API_PRODUCTO.LISTADO, {
+            method: 'GET',
+            headers: {
+                // 'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            // body: JSON.stringify({
+            //     codigo: null,
+            //     habilitado: true
+            // }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                setProductos(response);
+            })
+    }, []);
+
+    /*function traerString(longitud) {
         let resultado = '';
         const caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const carLon = caracteres.length;
@@ -47,7 +75,7 @@ const Producto = () => {
         { codigo: codAleatorio, nombre: "Remera", talle: "M", color: "negro", tienda: "Sucursal Avellaneda" },
         { codigo: codAleatorio1, nombre: "Pantalon", talle: "M", color: "rojo", tienda: "Sucursal Avellaneda" },
         { codigo: codAleatorio2, nombre: "Remera", talle: "XL", color: "blanco", tienda: "Sucursal Quilmes" },
-    ];
+    ];*/
 
     return (
         <>

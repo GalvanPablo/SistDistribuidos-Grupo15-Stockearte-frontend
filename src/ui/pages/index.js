@@ -5,6 +5,7 @@ export { default as NuevaTienda } from './tienda/nueva/NuevaTienda'
 export { default as DetalleTienda } from './tienda/detalle/DetalleTienda'
 
 export { default as Producto } from './producto/Producto'
+export { default as NuevoProducto } from './producto/nueva/NuevoProducto'
 export { default as DetalleProducto } from './producto/detalle/DetalleProducto'
 
 export { default as Usuario } from './usuario/Usuario'
