@@ -41,16 +41,11 @@
 }
 
 .toolbar__filtro__container button {
-    background-color: var(--seconday_color);
     color: #fff;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-}
-
-.toolbar__filtro__container button:hover {
-    background-color: #3e8e41;
 }
 
 .tabla {
@@ -64,6 +59,9 @@
     border-bottom: 1px solid #ddd;
 }
 
+.columna_codigo {
+    width: 300px;
+}
 .columna_acciones {
     width: 100px;
 }
@@ -87,4 +85,19 @@
 
 .tabla th {
     font-weight: bold;
+}
+
+.tabla__celdaAciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.icono_detalles {
+    color: var(--dark-color);
+}
+
+.icono_detalles:hover {
+    color: var(--seconday_color);
 }

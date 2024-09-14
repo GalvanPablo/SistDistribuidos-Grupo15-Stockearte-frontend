@@ -12,7 +12,7 @@ import { faShop, faTags, faUser } from '@fortawesome/free-solid-svg-icons'
 import { API_AUTH } from '../../../data/api';
 
 const SideBar = () => {
-    const deCentral = useSelector(state => state.auth.rol) == API_AUTH.ROLES[1];
+    const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
 
     return (
         <nav className={styles.sidebar}>

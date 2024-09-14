@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { NavBar, SideBar } from './ui/layout';
 
 // Paginas
-import { Auth, Tienda, NuevaTienda, DetalleTienda, Producto, NuevoProducto , Usuario, DetalleProducto} from './ui/pages';
+import { Auth, Tienda, NuevaTienda, DetalleTienda, Producto, NuevoProducto, DetalleProducto, Usuario } from './ui/pages';
 
 import { API_AUTH } from './data/api';
 
@@ -16,7 +16,7 @@ import './App.css';
 function App() {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     // const rol = useSelector(state => state.auth.rol);
-    const deCentral = useSelector(state => state.auth.rol) == API_AUTH.ROLES[1];
+    const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
 
     return (
         <BrowserRouter>
@@ -28,8 +28,8 @@ function App() {
                         <div className='view__container'>
                             <Routes>
                                 {/* Home */}
-                                <Route path='/auth' element={<Navigate to="/tiendas" />} />
-                                <Route path='/' element={<Navigate to="/tiendas" />} />
+                                <Route path='/auth' element={<Navigate to={deCentral ? "/tiendas" : "/productos"} />} />
+                                <Route path='/' element={<Navigate to={deCentral ? "/tiendas" : "/productos"} />} />
 
                                 {deCentral && (
                                     <>

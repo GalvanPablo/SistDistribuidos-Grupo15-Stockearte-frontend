@@ -21,9 +21,6 @@ const NuevaTienda = () => {
             provincia
         }
 
-        console.log(API_TIENDA.ALTA);
-        console.table(tienda);
-
         fetch(API_TIENDA.ALTA, {
             method: 'POST',
             headers: {

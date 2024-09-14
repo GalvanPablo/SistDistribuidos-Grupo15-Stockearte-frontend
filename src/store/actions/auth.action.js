@@ -17,11 +17,12 @@ export const login = (username, password) => async (dispatch) => {
         })
 
         if (response.ok) {
-            const { nombre, rol } = await response.json();
+            const { nombre, rol, id } = await response.json();
             dispatch({
                 type: LOGIN_SUCCESS,
                 nombre,
-                rol
+                rol,
+                id
             });
         }
     } catch (error) {

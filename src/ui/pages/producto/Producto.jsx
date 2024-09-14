@@ -9,14 +9,22 @@ import { Link } from 'react-router-dom';
 
 import { API_PRODUCTO } from '../../../data/api'
 
+import { useSelector } from 'react-redux';
+import { API_AUTH } from '../../../data/api';
+
 const Producto = () => {
+    const UsuarioID = useSelector(state => state.auth.id);
+    const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
+
     const Item = ({ codigo, nombre, talle, color, tienda }) => (
         <tr className={styles.tabla__fila}>
             <td>{codigo}</td>
             <td>{nombre}</td>
             <td>{talle}</td>
             <td>{color}</td>
-            <td>{tienda}</td>
+            {deCentral && (
+                <td>{tienda}</td>
+            )}
             <td>
                 <Link to={`/productos/producto/${codigo}`} title='ver detalle'>
                     <FontAwesomeIcon icon={faFilePen} />
@@ -28,13 +36,7 @@ const Producto = () => {
     const [productos, setProductos] = React.useState([]);
 
     React.useEffect(() => {
-        // setTiendas([
-        //     { codigo: "ABCDE1234", nombre: "Sucursal Lanús", estado: "Habilitada" },
-        //     { codigo: "FGHIJ5678", nombre: "Sucursal Avellaneda", estado: "Deshabilitada" },
-        //     { codigo: "KLMNOP9012", nombre: "Sucursal Quilmes", estado: "Habilitada" },
-        // ])
-
-        fetch(API_PRODUCTO.LISTADO, {
+        fetch(API_PRODUCTO.LISTADO(UsuarioID), {
             method: 'GET',
             headers: {
                 // 'Authorization': `Bearer ${token}`,
@@ -47,35 +49,13 @@ const Producto = () => {
         })
             .then(response => response.json())
             .then(response => {
-                setProductos(response);
+                if (Array.isArray(response)) {
+                    setProductos(response);
+                } else {
+                    setProductos([]);
+                }
             })
     }, []);
-
-    /*function traerString(longitud) {
-        let resultado = '';
-        const caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const carLon = caracteres.length;
-
-        for (let i = 0; i < longitud; i++) {
-
-            // Genero un indice random
-            const aux = Math.floor(Math.random() * carLon);
-
-            resultado += caracteres.charAt(aux);
-        }
-
-        return resultado;
-    }
-
-    const codAleatorio = traerString(10);
-    const codAleatorio1 = traerString(10);
-    const codAleatorio2 = traerString(10);
-
-    const productos = [
-        { codigo: codAleatorio, nombre: "Remera", talle: "M", color: "negro", tienda: "Sucursal Avellaneda" },
-        { codigo: codAleatorio1, nombre: "Pantalon", talle: "M", color: "rojo", tienda: "Sucursal Avellaneda" },
-        { codigo: codAleatorio2, nombre: "Remera", talle: "XL", color: "blanco", tienda: "Sucursal Quilmes" },
-    ];*/
 
     return (
         <>
@@ -103,7 +83,9 @@ const Producto = () => {
                             <th>Nombre</th>
                             <th>Talle</th>
                             <th>Color</th>
-                            <th>Tienda</th>
+                            {deCentral && (
+                                <th>Tienda</th>
+                            )}
                             <th className={styles.columna_acciones}>Acciones</th>
                         </tr>
                     </thead>

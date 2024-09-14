@@ -16,24 +16,21 @@ const Tienda = () => {
         <tr className={styles.tabla__fila}>
             <td>{codigo}</td>
             <td>{estado}</td>
-            <td>
+            <td className={styles.tabla__celdaAciones}>
                 <Link to={`/tiendas/tienda/${codigo}`} title='ver detalle'>
-                    <FontAwesomeIcon icon={faFilePen} />
+                    <FontAwesomeIcon icon={faFilePen} className={styles.icono_detalles}/>
                 </Link>
             </td>
         </tr>
     );
 
+    const [codigo, setCodigo] = React.useState('');
+    const [habilitado, setHabilitado] = React.useState('');
+
     const [tiendas, setTiendas] = React.useState([]);
 
-    React.useEffect(() => {
-        // setTiendas([
-        //     { codigo: "ABCDE1234", nombre: "Sucursal Lanús", estado: "Habilitada" },
-        //     { codigo: "FGHIJ5678", nombre: "Sucursal Avellaneda", estado: "Deshabilitada" },
-        //     { codigo: "KLMNOP9012", nombre: "Sucursal Quilmes", estado: "Habilitada" },
-        // ])
-
-        fetch(API_TIENDA.LISTADO, {
+    const obtenerListado = () => {
+        fetch(API_TIENDA.LISTADO(codigo, habilitado), {
             method: 'GET',
             headers: {
                 // 'Authorization': `Bearer ${token}`,
@@ -46,9 +43,17 @@ const Tienda = () => {
         })
             .then(response => response.json())
             .then(response => {
-                setTiendas(response);
+                if(Array.isArray(response)){
+                    setTiendas(response);
+                } else {
+                    setTiendas([]);
+                }
             })
-    }, []);
+    };
+
+    React.useEffect(() => {
+        obtenerListado();
+    }, [codigo, habilitado]); // BUSCAR EN CADA CAMBIO DE FILTRO
 
     return (
         <>
@@ -58,13 +63,13 @@ const Tienda = () => {
                 <div className={styles.toolbar}>
                     <Link to={`/tiendas/nueva`} className={styles.nuevo}>Nueva Tienda</Link>
                     <div className={styles.toolbar__filtro__container}>
-                        <input type="text" name="" id="" placeholder='Código' />
-                        <select name="" id="">
-                            <option value="-1">(Todos)</option>
+                        <input type="text" name="" id="" placeholder='Código' onChange={(e) => setCodigo(e.target.value)}/>
+                        <select name="habilitado" id="habilitado" onChange={(e) => setHabilitado(e.target.value)}>
+                            <option value="">(Todos)</option>
                             <option value="1">Habilitadas</option>
-                            <option value="2">Deshabilitadas</option>
+                            <option value="0">Deshabilitadas</option>
                         </select>
-                        <button>
+                        <button onClick={obtenerListado}>
                             <FontAwesomeIcon icon={faFilter} />
                         </button>
                     </div>
@@ -73,7 +78,7 @@ const Tienda = () => {
                 <table className={styles.tabla}>
                     <thead className={styles.tabla__encabezado}>
                         <tr>
-                            <th>Código</th>
+                            <th className={styles.columna_codigo}>Código</th>
                             <th>Estado</th>
                             <th className={styles.columna_acciones}>Acciones</th>
                         </tr>
