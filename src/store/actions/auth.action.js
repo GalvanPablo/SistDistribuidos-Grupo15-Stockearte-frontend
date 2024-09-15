@@ -31,15 +31,15 @@ export const login = (username, password) => async (dispatch) => {
         });
     }
 
-    // if(username === '1234@correo.com' && password === '1234'){
-    //     dispatch({
-    //         type: LOGIN_SUCCESS
-    //     });
-    // } else {
-    //     dispatch({
-    //         type: LOGIN_FAILURE,
-    //     });
-    // }
+     /*if(username === '1234@correo.com' && password === '1234'){
+         dispatch({
+             type: LOGIN_SUCCESS
+         });
+     } else {
+         dispatch({
+             type: LOGIN_FAILURE,
+         });
+     }*/
 };
 
 export const logout = () => ({

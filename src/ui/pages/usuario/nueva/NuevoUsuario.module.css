@@ -1,0 +1,24 @@
+.form {
+    margin-top: 20px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.form button {
+    margin-top: 15px;
+    padding: 5px;
+    font-weight: normal;
+    font-size: 1rem;
+
+    border: 1px solid var(--primary-color);
+    background-color: var(--green-color);
+
+    cursor: pointer;
+}
+
+.form button:hover {
+    filter: brightness(1.2);
+}

@@ -2,46 +2,52 @@ import React from "react";
 
 import { TextInput } from '../../../components'
 
-import { API_PRODUCTO } from '../../../../data/api'
+import { API_USUARIO } from '../../../../data/api'
 
-import styles from './NuevoProducto.module.css'
+import styles from './NuevoUsuario.module.css'
 
-const NuevoProducto = () => {
+const NuevoUsuario = () => {
     const [nombre, setNombre] = React.useState('');
-    const [talle, setTalle] = React.useState('');
-    const [color, setColor] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [emailError, setEmailError] = React.useState(false);
+    const [clave, setClave] = React.useState('');
 
     const guardarOnClick = () => {
-        const producto = {
+        const usuario = {
             nombre,
-            talle,
-            color,
+            email,
+            clave,
         }
 
-        fetch(API_PRODUCTO.ALTA, {
+        fetch(API_USUARIO.ALTA, {
             method: 'POST',
             headers: {
                 // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(producto),
+            body: JSON.stringify(usuario),
         })
-            .then(response => {
+           .then(response => {
                 if (!response.ok) {
                     response.text().then(text => {
                         alert(`ERROR: ${response.status}\n${text}`);
+                        setEmailError(true);
                     });
                 } else {
                     response.json();
-                    alert('PERFECTAMENTE EQUILIBRADO');
+                    alert('TODO JOYA');
                 }
             })
     };
 
+    React.useEffect(()=>{
+        setEmailError(false);
+    }, [email]);
+
     return (
         <div>
             <div className={styles.encabezado}>
-                <h1>Nuevo Producto</h1>
+                <h1>Nuevo Usuario</h1>
             </div>
             <div>
                 <form className={styles.form}>
@@ -50,12 +56,14 @@ const NuevoProducto = () => {
                         onChange={(value) => setNombre(value)}
                     />
                     <TextInput
-                        label={"Talle"}
-                        onChange={(value) => setTalle(value)}
+                        label={"Email"}
+                        onChange={setEmail}
+                        error={emailError}
+                        feedback={emailError && 'El email ingresado ya esta en uso'}
                     />
                     <TextInput
-                        label={"Color"}
-                        onChange={(value) => setColor(value)}
+                        label={"Contraseña"}
+                        onChange={(value) => setClave(value)}
                     />
                     <button type="button" className={styles.btn_guardar} onClick={guardarOnClick}>
                         Guardar
@@ -66,4 +74,4 @@ const NuevoProducto = () => {
     )
 }
 
-export default NuevoProducto
+export default NuevoUsuario

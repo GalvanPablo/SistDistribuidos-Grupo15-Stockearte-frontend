@@ -66,10 +66,10 @@ const Producto = () => {
                     <Link to={`/productos/nueva`} className={styles.nuevo}>Nuevo Producto</Link>
 
                     <div className={styles.toolbar__filtro__container}>
-                        <input type="text" name="" id="" placeholder='codigo' />
-                        <input type="text" name="" id="" placeholder='nombre' />
-                        <input type="text" name="" id="" placeholder='talle' />
-                        <input type="text" name="" id="" placeholder='color' />
+                        <input type="text" name="" id="" placeholder='Codigo' />
+                        <input type="text" name="" id="" placeholder='Nombre' />
+                        <input type="text" name="" id="" placeholder='Talle' />
+                        <input type="text" name="" id="" placeholder='Color' />
                         <button>
                             <FontAwesomeIcon icon={faFilter} />
                         </button>

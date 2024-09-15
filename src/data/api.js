@@ -11,6 +11,12 @@ export const API_PRODUCTO = {
     LISTADO: (UsuarioID ) => API_URL + `producto/listado/${UsuarioID}`,
 }
 
+export const API_USUARIO = {
+    ALTA: API_URL + 'usuario/alta',
+    LISTADO: (nombre, tienda, habilitado) => API_URL + 
+    `usuarios/listado?nombre=${nombre}&tienda=${tienda}&habilitado=${habilitado}`, //usuarios o usuario
+}
+
 export const API_AUTH = {
     LOGIN: API_URL + 'auth/login',
     ROLES: ['ROLE_TIENDA','ROLE_CASA_CENTRAL']
