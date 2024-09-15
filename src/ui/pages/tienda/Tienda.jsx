@@ -12,7 +12,7 @@ import { API_TIENDA } from '../../../data/api'
 
 
 const Tienda = () => {
-    const Item = ({ codigo, nombre, estado }) => (
+    const Item = ({ codigo, estado }) => (
         <tr className={styles.tabla__fila}>
             <td>{codigo}</td>
             <td>{estado}</td>

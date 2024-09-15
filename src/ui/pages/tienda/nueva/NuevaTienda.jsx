@@ -33,11 +33,11 @@ const NuevaTienda = () => {
                 if (!response.ok) {
                     response.text().then(text => {
                         alert(`ERROR: ${response.status}\n${text}`);
+                        // TODO HACE FALTA VER EL MSJ DE VALIDACIÓN PARA MANEJAR EL ERROR DE CODIGO DUPLICADO
                         setCodigoError(true);
                     });
                 } else {
                     response.json();
-                    alert('TODO JOYA');
                 }
             })
     };

@@ -3,7 +3,7 @@ const API_URL = 'http://localhost:8000/'
 export const API_TIENDA = {
     ALTA: API_URL + 'tienda/alta',
     LISTADO: (codigo, habilitado) => API_URL + `tiendas/listado?codigo=${codigo}&habilitado=${habilitado}`,
-    // GET_BY_ID: (id) => API_URL + `dispositivos/estacionamiento/${id}`,
+    OBTENER: (id) => API_URL + `tienda/${id}/detalle`,
 }
 
 export const API_PRODUCTO = {

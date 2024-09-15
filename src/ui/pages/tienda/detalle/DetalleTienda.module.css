@@ -1,0 +1,105 @@
+.form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+
+    gap: 10px;
+}
+
+.input_estado {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_estado label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.input_estado select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn_guardar {
+    margin-left: 10px;
+    padding: 6px;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 1rem;
+
+    border: 1px solid var(--primary-color);
+    background-color: var(--green-color);
+
+    cursor: pointer;
+}
+
+.btn_guardar:hover {
+    filter: brightness(1.2);
+}
+
+
+
+.listviews__container {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.listview {
+    width: 100%;
+}
+
+.listview__encabezado {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+}
+.listview__encabezado span{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.listview__encabezado button{
+    padding: 5px;
+}
+
+.listview table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.listview table thead {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.listview .columna_accion {
+    width: 75px;
+}
+
+.listview table tbody {
+    border-bottom: 1px solid #ddd;
+}
+
+.listview table tr {
+    border-top: 1px solid #ddd;
+}
+
+.listview th, .listview td {
+    padding: 8px;
+    text-align: left;
+}
+
+.listview th {
+    font-weight: bold;
+}
