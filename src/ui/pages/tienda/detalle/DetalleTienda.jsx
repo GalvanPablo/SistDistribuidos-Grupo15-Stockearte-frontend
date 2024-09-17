@@ -2,8 +2,6 @@ import React from 'react'
 
 import { useParams } from "react-router-dom"
 import { TextInput, Modal } from '../../../components'
-import SwitchSelector from "react-switch-selector";
-// https://www.npmjs.com/package/react-switch-selector
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShop, faLink, faLinkSlash } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +13,11 @@ const DetalleTienda = () => {
     const detallesVisualizacion = useParams();
     const tiendaID = detallesVisualizacion.id;
 
-    const [tienda, setTienda] = React.useState({});
+    const [direccion, setDireccion] = React.useState('');
+    const [ciudad, setCiudad] = React.useState('');
+    const [provincia, setProvincia] = React.useState('');
+    const [estado, setEstado] = React.useState();
+
     const [usuariosAsociados, setUsuariosAsociados] = React.useState([]);
     const [productosAsociados, setProductosAsociados] = React.useState([]);
 
@@ -36,7 +38,12 @@ const DetalleTienda = () => {
             // }),
         })
             .then(response => response.json())
-            .then(response => { setTienda(response) })
+            .then(response => {
+                setDireccion(response.direccion);
+                setCiudad(response.ciudad);
+                setProvincia(response.provincia);
+                setEstado(response.habilitado);
+            })
 
         actualizarUsuarios();
         actualizarProductos();
@@ -80,7 +87,8 @@ const DetalleTienda = () => {
 
     // ACIONES
     const guardarOnClick = () => {
-
+        const tiendaAux = {direccion, ciudad, provincia, estado};
+        console.table(tiendaAux);
     };
 
     const asignarUsuario_onClick = (usuarioID) => {
@@ -123,22 +131,27 @@ const DetalleTienda = () => {
                 <form className={styles.form}>
                     <TextInput
                         label={"Dirección"}
-                    // onChange={(value) => setDireccion(value)}
+                        value={direccion}
+                        onChange={(value) => setDireccion(value)}
                     />
                     <TextInput
                         label={"Ciudad"}
-                    // onChange={(value) => setCiudad(value)}
+                        value={ciudad}
+                        onChange={(value) => setCiudad(value)}
                     />
                     <TextInput
                         label={"Provincia"}
-                    // onChange={(value) => setProvincia(value)}
+                        value={provincia}
+                        onChange={(value) => setProvincia(value)}
                     />
 
                     <div className={styles.input_estado}>
                         <label htmlFor="habilitada">Estado</label>
-                        <select name="habilitada" id="habilitada">
-                            <option value="1">Habilitada</option>
-                            <option value="0">Deshabilitada</option>
+                        <select name="habilitada" id="habilitada"
+                            onChange={({ target: { value } }) => setEstado(value === "1")}
+                        >
+                            <option value="1" selected={estado}>Habilitada</option>
+                            <option value="0" selected={!estado}>Deshabilitada</option>
                         </select>
                     </div>
 
