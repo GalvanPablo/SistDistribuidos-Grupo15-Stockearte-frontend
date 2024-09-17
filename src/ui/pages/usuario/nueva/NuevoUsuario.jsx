@@ -16,7 +16,7 @@ const NuevoUsuario = () => {
         const usuario = {
             nombre,
             email,
-            clave,
+            clave
         }
 
         fetch(API_USUARIO.ALTA, {

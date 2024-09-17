@@ -13,8 +13,8 @@ import { useSelector } from 'react-redux';
 import { API_AUTH } from '../../../data/api';
 
 const Producto = () => {
-    const UsuarioID = useSelector(state => state.auth.id);
-    const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
+       const UsuarioID = useSelector(state => state.auth.id);
+       const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
 
     const Item = ({ codigo, nombre, talle, color, tienda }) => (
         <tr className={styles.tabla__fila}>
@@ -27,16 +27,21 @@ const Producto = () => {
             )}
             <td>
                 <Link to={`/productos/producto/${codigo}`} title='ver detalle'>
-                    <FontAwesomeIcon icon={faFilePen} />
+                    <FontAwesomeIcon icon={faFilePen} className={styles.icono_detalles}/>
                 </Link>
             </td>
         </tr>
     );
 
+    const [codigo, setCodigo] = React.useState('');
+    const [nombre, setNombre] = React.useState('');
+    const [talle, setTalle] = React.useState('');
+    const [color, setColor] = React.useState('');
+
     const [productos, setProductos] = React.useState([]);
 
-    React.useEffect(() => {
-        fetch(API_PRODUCTO.LISTADO(UsuarioID), {
+    const obtenerListado = () => {
+        fetch(API_PRODUCTO.LISTADO(UsuarioID), { //REVISAR USUARIOID 
             method: 'GET',
             headers: {
                 // 'Authorization': `Bearer ${token}`,
@@ -55,7 +60,11 @@ const Producto = () => {
                     setProductos([]);
                 }
             })
-    }, []);
+    };
+
+    React.useEffect(() => {
+        obtenerListado();
+    }, [codigo, nombre, talle, color]); // BUSCAR EN CADA CAMBIO DE FILTRO
 
     return (
         <>
@@ -66,11 +75,11 @@ const Producto = () => {
                     <Link to={`/productos/nueva`} className={styles.nuevo}>Nuevo Producto</Link>
 
                     <div className={styles.toolbar__filtro__container}>
-                        <input type="text" name="" id="" placeholder='Codigo' />
-                        <input type="text" name="" id="" placeholder='Nombre' />
-                        <input type="text" name="" id="" placeholder='Talle' />
-                        <input type="text" name="" id="" placeholder='Color' />
-                        <button>
+                        <input type="text" name="" id="" placeholder='Codigo' onChange={(e) => setCodigo(e.target.value)}/>
+                        <input type="text" name="" id="" placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
+                        <input type="text" name="" id="" placeholder='Talle' onChange={(e) => setTalle(e.target.value)}/>
+                        <input type="text" name="" id="" placeholder='Color' onChange={(e) => setColor(e.target.value)}/>
+                        <button onClick={obtenerListado}>
                             <FontAwesomeIcon icon={faFilter} />
                         </button>
                     </div>

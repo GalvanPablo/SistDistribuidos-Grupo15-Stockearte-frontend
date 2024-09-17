@@ -78,7 +78,7 @@ const Usuario = () => {
                 <table className={styles.tabla}>
                     <thead className={styles.tabla__encabezado}>
                         <tr>
-                            <th>Nombre</th>
+                            <th className={styles.columna_codigo}>Nombre</th>
                             <th>Tienda</th>
                             <th>Estado</th>
                             <th className={styles.columna_acciones}>Acciones</th>
