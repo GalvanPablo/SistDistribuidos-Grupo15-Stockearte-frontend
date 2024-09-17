@@ -1,4 +1,5 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
 
 import { TextInput } from '../../../components'
 
@@ -38,6 +39,7 @@ const NuevaTienda = () => {
                     });
                 } else {
                     response.json();
+                    setFinalizado(true);
                 }
             })
     };
@@ -46,8 +48,11 @@ const NuevaTienda = () => {
         setCodigoError(false);
     }, [codigo]);
 
+    const [finalizado, setFinalizado] = React.useState(false);
+
     return (
         <div>
+            {finalizado && <Navigate to={"/tiendas"} />}
             <div className={styles.encabezado}>
                 <h1>Nueva Tienda</h1>
             </div>

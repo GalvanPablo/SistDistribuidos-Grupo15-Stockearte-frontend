@@ -25,29 +25,30 @@ const Tienda = () => {
     );
 
     const [codigo, setCodigo] = React.useState('');
-    const [habilitado, setHabilitado] = React.useState('');
+    const [habilitado, setHabilitado] = React.useState(true);
 
     const [tiendas, setTiendas] = React.useState([]);
 
     const obtenerListado = () => {
-        fetch(API_TIENDA.LISTADO(codigo, habilitado), {
-            method: 'GET',
+        const filtros = {
+            codigo,
+            habilitado
+        }
+
+        console.log(API_TIENDA.LISTADO);
+        console.log(filtros);
+
+        fetch(API_TIENDA.LISTADO, {
+            method: 'POST',
             headers: {
                 // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            // body: JSON.stringify({
-            //     codigo: null,
-            //     habilitado: true
-            // }),
+            body: JSON.stringify(filtros),
         })
             .then(response => response.json())
             .then(response => {
-                if(Array.isArray(response)){
-                    setTiendas(response);
-                } else {
-                    setTiendas([]);
-                }
+                setTiendas(response.tiendas);
             })
     };
 
@@ -64,8 +65,7 @@ const Tienda = () => {
                     <Link to={`/tiendas/nueva`} className={styles.nuevo}>Nueva Tienda</Link>
                     <div className={styles.toolbar__filtro__container}>
                         <input type="text" name="" id="" placeholder='Código' onChange={(e) => setCodigo(e.target.value)}/>
-                        <select name="habilitado" id="habilitado" onChange={(e) => setHabilitado(e.target.value)}>
-                            <option value="">(Todos)</option>
+                        <select name="habilitado" id="habilitado" onChange={(e) => setHabilitado(e.target.value == 1)}>
                             <option value="1">Habilitadas</option>
                             <option value="0">Deshabilitadas</option>
                         </select>
