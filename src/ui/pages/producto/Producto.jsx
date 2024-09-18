@@ -13,8 +13,7 @@ import { useSelector } from 'react-redux';
 import { API_AUTH } from '../../../data/api';
 
 const Producto = () => {
-       const UsuarioID = useSelector(state => state.auth.id);
-       const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
+    const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
 
     const Item = ({ codigo, nombre, talle, color, tienda }) => (
         <tr className={styles.tabla__fila}>
@@ -37,34 +36,39 @@ const Producto = () => {
     const [nombre, setNombre] = React.useState('');
     const [talle, setTalle] = React.useState('');
     const [color, setColor] = React.useState('');
+    const [tienda, setTienda] = React.useState('');
 
     const [productos, setProductos] = React.useState([]);
 
     const obtenerListado = () => {
-        fetch(API_PRODUCTO.LISTADO(UsuarioID), { //REVISAR USUARIOID 
-            method: 'GET',
+        const filtros = {
+            codigo,
+            nombre,
+            talle,
+            color,
+            tienda
+        }
+
+        console.log(API_PRODUCTO.LISTADO);
+        console.log(filtros);
+
+        fetch(API_PRODUCTO.LISTADO, {
+            method: 'POST',
             headers: {
                 // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            // body: JSON.stringify({
-            //     codigo: null,
-            //     habilitado: true
-            // }),
+            body: JSON.stringify(filtros),
         })
             .then(response => response.json())
             .then(response => {
-                if (Array.isArray(response)) {
-                    setProductos(response);
-                } else {
-                    setProductos([]);
-                }
+                setProductos(response.productos);
             })
     };
 
     React.useEffect(() => {
         obtenerListado();
-    }, [codigo, nombre, talle, color]); // BUSCAR EN CADA CAMBIO DE FILTRO
+    }, [codigo, nombre, talle, color, tienda]); // BUSCAR EN CADA CAMBIO DE FILTRO
 
     return (
         <>
@@ -73,7 +77,6 @@ const Producto = () => {
 
                 <div className={styles.toolbar}>
                     <Link to={`/productos/nueva`} className={styles.nuevo}>Nuevo Producto</Link>
-
                     <div className={styles.toolbar__filtro__container}>
                         <input type="text" name="" id="" placeholder='Codigo' onChange={(e) => setCodigo(e.target.value)}/>
                         <input type="text" name="" id="" placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
@@ -88,7 +91,7 @@ const Producto = () => {
                 <table className={styles.tabla}>
                     <thead className={styles.tabla_encabezado}>
                         <tr>
-                            <th>Código</th>
+                            <th className={styles.columna_codigo}>Código</th>
                             <th>Nombre</th>
                             <th>Talle</th>
                             <th>Color</th>

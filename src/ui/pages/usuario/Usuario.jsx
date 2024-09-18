@@ -31,6 +31,30 @@ const Usuario = () => {
     const [usuarios, setUsuarios] = React.useState([])
 
     const obtenerListado = () => {
+        const filtros = {
+            nombre,
+            tienda,
+            habilitado
+        }
+
+        console.log(API_USUARIO.LISTADO);
+        console.log(filtros);
+
+        fetch(API_USUARIO.LISTADO, {
+            method: 'POST',
+            headers: {
+                // 'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(filtros),
+        })
+            .then(response => response.json())
+            .then(response => {
+                setUsuarios(response.usuarios);
+            })
+    };
+
+    /*const obtenerListado = () => {
         fetch(API_USUARIO.LISTADO(nombre, tienda, habilitado), {
             method: 'GET',
             headers: {
@@ -48,7 +72,7 @@ const Usuario = () => {
                 setUsuarios([])
             }
         })
-    }
+    }*/
 
     React.useEffect(() => {
         obtenerListado();
@@ -64,10 +88,9 @@ const Usuario = () => {
                     <div className={styles.toolbar__filtro__container}>
                         <input type="text" name="" id="" placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
                         <input type="text" name="" id="" placeholder='Tienda' onChange={(e) => setTienda(e.target.value)}/>
-                        <select name="habilitado" id="habilitado" onChange={(e) => setHabilitado(e.target.value)}>
-                            <option value="">(Todos)</option>
-                            <option value="1">Habilitados</option>
-                            <option value="0">Deshabilitados</option>
+                        <select name="habilitado" id="habilitado" onChange={(e) => setHabilitado(e.target.value === 1)}>
+                            <option value="1">Habilitadas</option>
+                            <option value="0">Deshabilitadas</option>
                         </select>
                         <button onClick={obtenerListado}>
                             <FontAwesomeIcon icon={faFilter} />
@@ -90,7 +113,7 @@ const Usuario = () => {
                                 key={index}
                                 nombre={usuario.nombre}
                                 tienda={usuario.tienda}
-                                estado={usuario.habilitado?'Habilitado':'Deshabilitado'}
+                                estado={usuario.habilitado?'Habilitada':'Deshabilitada'}
                             />
                         ))}
                     </tbody>

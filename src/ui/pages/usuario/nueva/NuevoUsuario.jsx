@@ -1,9 +1,7 @@
-import React from "react";
-
+import React from 'react';
+import { Navigate } from 'react-router-dom'
 import { TextInput } from '../../../components'
-
 import { API_USUARIO } from '../../../../data/api'
-
 import styles from './NuevoUsuario.module.css'
 
 const NuevoUsuario = () => {
@@ -11,12 +9,14 @@ const NuevoUsuario = () => {
     const [email, setEmail] = React.useState('');
     const [emailError, setEmailError] = React.useState(false);
     const [clave, setClave] = React.useState('');
+    const [rol, setRol] = React.useState('');
 
     const guardarOnClick = () => {
         const usuario = {
             nombre,
             email,
-            clave
+            clave,
+            rol
         }
 
         fetch(API_USUARIO.ALTA, {
@@ -35,7 +35,7 @@ const NuevoUsuario = () => {
                     });
                 } else {
                     response.json();
-                    alert('TODO JOYA');
+                    setFinalizado(true)
                 }
             })
     };
@@ -44,8 +44,11 @@ const NuevoUsuario = () => {
         setEmailError(false);
     }, [email]);
 
+    const [finalizado, setFinalizado] = React.useState(false);
+
     return (
         <div>
+            {finalizado && <Navigate to={"/usuarios"} />}
             <div className={styles.encabezado}>
                 <h1>Nuevo Usuario</h1>
             </div>
@@ -64,6 +67,10 @@ const NuevoUsuario = () => {
                     <TextInput
                         label={"Contraseña"}
                         onChange={(value) => setClave(value)}
+                    />
+                    <TextInput
+                        label={"Rol"}
+                        onChange={(value) => setRol(value)}
                     />
                     <button type="button" className={styles.btn_guardar} onClick={guardarOnClick}>
                         Guardar
