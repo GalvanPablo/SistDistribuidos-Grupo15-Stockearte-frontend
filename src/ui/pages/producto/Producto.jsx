@@ -36,7 +36,6 @@ const Producto = () => {
     const [nombre, setNombre] = React.useState('');
     const [talle, setTalle] = React.useState('');
     const [color, setColor] = React.useState('');
-    const [tienda, setTienda] = React.useState('');
 
     const [productos, setProductos] = React.useState([]);
 
@@ -45,8 +44,7 @@ const Producto = () => {
             codigo,
             nombre,
             talle,
-            color,
-            tienda
+            color
         }
 
         console.log(API_PRODUCTO.LISTADO);
@@ -68,7 +66,7 @@ const Producto = () => {
 
     React.useEffect(() => {
         obtenerListado();
-    }, [codigo, nombre, talle, color, tienda]); // BUSCAR EN CADA CAMBIO DE FILTRO
+    }, [codigo, nombre, talle, color]); // BUSCAR EN CADA CAMBIO DE FILTRO
 
     return (
         <>
@@ -109,7 +107,6 @@ const Producto = () => {
                                 nombre={producto.nombre}
                                 talle={producto.talle}
                                 color={producto.color}
-                                tienda={producto.tienda}
                             />
                         ))}
                     </tbody>

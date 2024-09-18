@@ -12,7 +12,7 @@ const DetalleUsuario = () => {
     const idUsuario = detallesVisualizacion.id;
     const [nombre, setNombre] = React.useState();
     const [email, setEmail] = React.useState('');
-    const [rol, setRol] = React.useState('');
+    const [clave, setClave] = React.useState('');
     const [estado, setEstado] = React.useState('');
 
 
@@ -31,19 +31,19 @@ const DetalleUsuario = () => {
             .then(response => {
                 setNombre(response.nombre);
                 setEmail(response.email);
-                setRol(response.rol);
+                setClave(response.clave);
                 setEstado(response.habilitado);
             })
     }, []);
 
-      // ACIONES
+      // ACCIONES
     const guardarOnClick = () => {
         fetch(API_USUARIO.MODIFICAR, {
             method: 'PUT', headers: {
                 // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idUsuario, nombre, email, rol, habilitado: estado }),
+            body: JSON.stringify({idUsuario, nombre, email, clave, habilitado: estado }),
         })
             .then(response => response.json())
             .then(response => {
@@ -69,9 +69,9 @@ const DetalleUsuario = () => {
                         onChange={(value) => setEmail(value)}
                     />
                     <TextInput
-                        label={"Rol"}
-                        value={rol}
-                        onChange={(value) => setRol(value)}
+                        label={"Clave"}
+                        value={clave}
+                        onChange={(value) => setClave(value)}
                     />
 
                     <div className={styles.input_estado}>
