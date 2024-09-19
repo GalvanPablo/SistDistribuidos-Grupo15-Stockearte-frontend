@@ -296,8 +296,10 @@ const DetalleTienda = () => {
                     </div>
                     <table>
                         <thead>
-                            <th>Nombre</th>
-                            <th className={styles.columna_accion}></th>
+                            <tr>
+                                <th>Nombre</th>
+                                <th className={styles.columna_accion}></th>
+                            </tr>
                         </thead>
                         <tbody>
                             {usuariosAsociados.map((usuario, index) => (
