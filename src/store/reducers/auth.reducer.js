@@ -1,17 +1,33 @@
 import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../actions/auth.action';
 
 // Definir el estado inicial del reducer
-const initialState = {
+let initialState = {
     isAuthenticated: false,
     nombre: null,
     rol: null,
     idUsuario: null
-    // token: null
 };
+
+const persistedState = JSON.parse(localStorage.getItem('authData'));
+
+if (persistedState) {
+    initialState = {
+        isAuthenticated: persistedState.isAuthenticated,
+        nombre: persistedState.nombre,
+        rol: persistedState.rol,
+        idUsuario: persistedState.idUsuario
+    };
+}
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN_SUCCESS:
+            localStorage.setItem('authData', JSON.stringify({
+                isAuthenticated: true,
+                nombre: action.nombre,
+                rol: action.rol,
+                idUsuario: action.idUsuario
+            }));
             return {
                 ...state,
                 isAuthenticated: true,
@@ -20,7 +36,7 @@ const authReducer = (state = initialState, action) => {
                 idUsuario: action.idUsuario
             };
         case LOGIN_FAILURE:
-            // sessionStorage.removeItem('token');
+            localStorage.removeItem('authData');
             return {
                 ...state,
                 isAuthenticated: false,
@@ -28,7 +44,7 @@ const authReducer = (state = initialState, action) => {
                 idUsuario: null
             };
         case LOGOUT:
-            // sessionStorage.removeItem('token');
+            localStorage.removeItem('authData');
             return {
                 ...state,
                 isAuthenticated: false,
