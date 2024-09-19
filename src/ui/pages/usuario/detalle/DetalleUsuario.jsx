@@ -5,6 +5,9 @@ import styles from './DetalleUsuario.module.css'
 import { useParams } from "react-router-dom"
 import { TextInput } from '../../../components'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+
 import { API_USUARIO } from '../../../../data/api';
 
 const DetalleUsuario = () => {
@@ -34,16 +37,19 @@ const DetalleUsuario = () => {
                 setClave(response.clave);
                 setEstado(response.habilitado);
             })
-    }, []);
+    }, [idUsuario]);
 
-      // ACCIONES
+    // ACCIONES
     const guardarOnClick = () => {
+        const modificaciones = { idUsuario, nombre, email, clave, habilitado: estado };
+        console.table(modificaciones);
+
         fetch(API_USUARIO.MODIFICAR, {
             method: 'PUT', headers: {
                 // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idUsuario, nombre, email, clave, habilitado: estado }),
+            body: JSON.stringify(modificaciones),
         })
             .then(response => response.json())
             .then(response => {
@@ -53,10 +59,11 @@ const DetalleUsuario = () => {
 
     return (
         <div>
-          <h1>
-            <span>{idUsuario}</span>
-          </h1>
-          <div>
+            <h1>
+                <FontAwesomeIcon icon={faUser} />
+                <span>Modificar Usuario</span>
+            </h1>
+            <div>
                 <form className={styles.form}>
                     <TextInput
                         label={"Nombre"}
@@ -72,6 +79,7 @@ const DetalleUsuario = () => {
                         label={"Clave"}
                         value={clave}
                         onChange={(value) => setClave(value)}
+                        passwd={true}
                     />
 
                     <div className={styles.input_estado}>
@@ -89,8 +97,8 @@ const DetalleUsuario = () => {
                     </button>
                 </form>
             </div>
-      </div>
-            
+        </div>
+
     )
 }
 

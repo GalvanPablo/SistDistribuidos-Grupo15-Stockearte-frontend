@@ -22,3 +22,22 @@
 .form button:hover {
     filter: brightness(1.2);
 }
+
+.input_rol {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_rol label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.input_rol select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    width: 100%;
+    box-sizing: border-box;
+}

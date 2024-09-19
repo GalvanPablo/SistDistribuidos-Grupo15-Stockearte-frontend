@@ -14,7 +14,8 @@ const TextInput = ({
     maxLength = 100,
     alfanumerico = false,
     feedback,
-    error = false
+    error = false,
+    passwd = false
 }) => {
     // const [feedback, setFeedback] = React.useState('');
     // const [error, setError] = React.useState(false);
@@ -33,7 +34,7 @@ const TextInput = ({
             {helperText && (
                 <span className={styles.input__helper}>{helperText}</span>
             )}
-            <input type="text" name={label} id={label}
+            <input type={passwd ? 'password' : 'text'} name={label} id={label}
                 placeholder={placeHolder}
                 className={styles.input__textbox}
                 required={required}
@@ -41,7 +42,7 @@ const TextInput = ({
                 value={value}
                 maxLength={maxLength}
                 onChange={handleInputChange}
-                style={{border: error? '1px solid red' : ''}}
+                style={{ border: error ? '1px solid red' : '' }}
             />
             {feedback && (
                 <span className={styles.input__feedback} style={{ color: error ? 'red' : '#00A676' }}>{feedback}</span>

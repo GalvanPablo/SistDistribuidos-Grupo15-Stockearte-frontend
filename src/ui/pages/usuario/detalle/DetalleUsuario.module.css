@@ -1,8 +1,15 @@
-.form {
-    margin-top: 20px;
+h1 {
     display: flex;
     flex-direction: row;
-    align-items: end;
+    align-items: center;
+    gap: 5px;
+}
+
+.form {
+    margin-top: 20px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
 
     gap: 10px;
 }
@@ -27,7 +34,6 @@
 }
 
 .btn_guardar {
-    margin-left: 10px;
     padding: 6px;
     border-radius: 5px;
     font-weight: normal;

@@ -11,13 +11,13 @@ import { API_USUARIO } from '../../../data/api'
 
 const Usuario = () => {
     
-    const Item = ({ nombre, tienda_id, estado }) => (
+    const Item = ({ nombre, tienda_id, estado, id }) => (
         <tr className={styles.tabla__fila}>
             <td>{nombre}</td>
             <td>{tienda_id}</td>
             <td>{estado}</td>
             <td className={styles.tabla__celdaAciones}>
-                <Link to={`/usuarios/usuario/${nombre}`} title='ver detalle'> {/*revisar*/}
+                <Link to={`/usuarios/usuario/${id}`} title='ver detalle'> {/*revisar*/}
                     <FontAwesomeIcon icon={faFilePen} className={styles.icono_detalles}/>
                 </Link>
             </td>
@@ -25,20 +25,18 @@ const Usuario = () => {
     );
     
     const [nombre, setNombre] = React.useState('')
-    const [tienda_id, setTienda] = React.useState('')
-    const [habilitado, setHabilitado] = React.useState('')
+    const [codigoTienda, setCodigoTienda] = React.useState('')
 
     const [usuarios, setUsuarios] = React.useState([])
 
     const obtenerListado = () => {
         const filtros = {
             nombre,
-            tienda_id,
-            habilitado
+            codigo: codigoTienda
+            // ...(codigoTienda.length !== 0 && {codigo: codigoTienda})
         }
 
-        console.log(API_USUARIO.LISTADO);
-        console.log(filtros);
+        console.table(filtros);
 
         fetch(API_USUARIO.LISTADO, {
             method: 'POST',
@@ -50,13 +48,13 @@ const Usuario = () => {
         })
             .then(response => response.json())
             .then(response => {
-                setUsuarios(response.usuarios);
+                setUsuarios(response.usuarios); //! NO TRAE DATOS DE LA TIENDA RELACIONADA ADEMASD DE QUE FILTRA SIN QUE SE LO ESPECIFIQUE A TODOS LOS USUARIOS CON TIENDAS
             })
     };
 
     React.useEffect(() => {
         obtenerListado();
-    }, [nombre, tienda_id, habilitado]); // BUSCAR EN CADA CAMBIO DE FILTRO
+    }, [nombre, codigoTienda]); // BUSCAR EN CADA CAMBIO DE FILTRO
 
     return (
      <>
@@ -67,11 +65,7 @@ const Usuario = () => {
                     <Link to={`/usuarios/nueva`} className={styles.nuevo}>Nuevo Usuario</Link>
                     <div className={styles.toolbar__filtro__container}>
                         <input type="text" name="" id="" placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
-                        <input type="text" name="" id="" placeholder='Tienda' onChange={(e) => setTienda(e.target.value)}/>
-                        <select name="habilitado" id="habilitado" onChange={(e) => setHabilitado(e.target.value == 1)}>
-                            <option value="1">Habilitadas</option>
-                            <option value="0">Deshabilitadas</option>
-                        </select>
+                        <input type="text" name="" id="" placeholder='Código de Tienda' onChange={(e) => setCodigoTienda(e.target.value)}/>
                         <button onClick={obtenerListado}>
                             <FontAwesomeIcon icon={faFilter} />
                         </button>
@@ -94,6 +88,7 @@ const Usuario = () => {
                                 nombre={usuario.nombre}
                                 tienda={usuario.tienda_id}
                                 estado={usuario.habilitado?'Habilitada':'Deshabilitada'}
+                                id={usuario.idUsuario}
                             />
                         ))}
                     </tbody>
