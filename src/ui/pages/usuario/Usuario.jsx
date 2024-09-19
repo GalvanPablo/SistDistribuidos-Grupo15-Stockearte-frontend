@@ -11,10 +11,10 @@ import { API_USUARIO } from '../../../data/api'
 
 const Usuario = () => {
     
-    const Item = ({ nombre, tienda_id, estado, id }) => (
+    const Item = ({ nombre, tienda, estado, id }) => (
         <tr className={styles.tabla__fila}>
             <td>{nombre}</td>
-            <td>{tienda_id}</td>
+            <td>{tienda.codigo}</td>
             <td>{estado}</td>
             <td className={styles.tabla__celdaAciones}>
                 <Link to={`/usuarios/usuario/${id}`} title='ver detalle'> {/*revisar*/}
@@ -84,8 +84,8 @@ const Usuario = () => {
                             <Item
                                 key={index}
                                 nombre={usuario.nombre}
-                                tienda={usuario.tienda_id}
-                                estado={usuario.habilitado?'Habilitada':'Deshabilitada'}
+                                tienda={usuario.tienda}
+                                estado={usuario.habilitado?'Habilitado':'Deshabilitado'}
                                 id={usuario.idUsuario}
                             />
                         ))}

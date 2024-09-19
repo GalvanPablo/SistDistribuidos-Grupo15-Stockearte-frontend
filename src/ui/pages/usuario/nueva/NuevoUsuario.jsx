@@ -13,6 +13,8 @@ const NuevoUsuario = () => {
     const [errorClave, setErrorClave] = React.useState('');
     const [rol, setRol] = React.useState(API_AUTH.ROLES[0]);
 
+    const [finalizado, setFinalizado] = React.useState(false);
+
     const guardarOnClick = () => {
         let sinErrores = true;
         if (nombre.trim().length === 0) {
@@ -74,8 +76,6 @@ const NuevoUsuario = () => {
                 }
             })
     };
-
-    const [finalizado, setFinalizado] = React.useState(false);
 
     return (
         <div>

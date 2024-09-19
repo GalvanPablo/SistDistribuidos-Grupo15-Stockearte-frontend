@@ -10,6 +10,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 import { API_USUARIO } from '../../../../data/api';
 
+import { Navigate } from 'react-router-dom'
+
 const DetalleUsuario = () => {
     const detallesVisualizacion = useParams();
     const idUsuario = detallesVisualizacion.id;
@@ -18,12 +20,13 @@ const DetalleUsuario = () => {
     const [clave, setClave] = React.useState('');
     const [estado, setEstado] = React.useState('');
 
+    const [finalizado, setFinalizado] = React.useState(false);
+
 
     React.useEffect(() => {
         fetch(API_USUARIO.OBTENER, {
             method: 'POST',
             headers: {
-                // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -53,11 +56,13 @@ const DetalleUsuario = () => {
             .then(response => response.json())
             .then(response => {
                 alert('Cambios guardados')
+                setFinalizado(true)
             })
     };
 
     return (
         <div>
+            {finalizado && <Navigate to={"/usuarios"} />}
             <h1>
                 <FontAwesomeIcon icon={faUser} />
                 <span>Modificar Usuario</span>
@@ -86,8 +91,8 @@ const DetalleUsuario = () => {
                         <select name="habilitada" id="habilitada"
                             onChange={({ target: { value } }) => setEstado(value === "1")}
                         >
-                            <option value="1" selected={estado}>Habilitada</option>
-                            <option value="0" selected={!estado}>Deshabilitada</option>
+                            <option value="1" selected={estado}>Habilitado</option>
+                            <option value="0" selected={!estado}>Deshabilitado</option>
                         </select>
                     </div>
 
