@@ -18,16 +18,15 @@ export const login = (username, password) => async (dispatch) => {
         })
 
         if (response.ok) {
-            const { nombre, rol, id } = await response.json();
+            const { nombre, rol, idUsuario } = await response.json();
             dispatch({
                 type: LOGIN_SUCCESS,
                 nombre,
                 rol,
-                id
+                idUsuario
             });
         } else {
             const errorText = await response.text();
-            console.log(errorText);
             
             if (errorText.includes('Usuario o contraseña incorrecta')) {
                 alert('Usuario o contraseña incorrectos');

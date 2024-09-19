@@ -35,9 +35,6 @@ const Tienda = () => {
             habilitado
         }
 
-        console.log(API_TIENDA.LISTADO);
-        console.log(filtros);
-
         fetch(API_TIENDA.LISTADO, {
             method: 'POST',
             headers: {

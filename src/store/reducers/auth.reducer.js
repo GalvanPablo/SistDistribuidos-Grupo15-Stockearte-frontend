@@ -5,7 +5,7 @@ const initialState = {
     isAuthenticated: false,
     nombre: null,
     rol: null,
-    id: null
+    idUsuario: null
     // token: null
 };
 
@@ -17,7 +17,7 @@ const authReducer = (state = initialState, action) => {
                 isAuthenticated: true,
                 nombre: action.nombre,
                 rol: action.rol,
-                id: action.id
+                idUsuario: action.idUsuario
             };
         case LOGIN_FAILURE:
             // sessionStorage.removeItem('token');
@@ -25,7 +25,7 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isAuthenticated: false,
                 nombre: null,
-                id: null
+                idUsuario: null
             };
         case LOGOUT:
             // sessionStorage.removeItem('token');
@@ -33,7 +33,7 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isAuthenticated: false,
                 nombre: null,
-                id: null
+                idUsuario: null
             };
         default:
             return state;

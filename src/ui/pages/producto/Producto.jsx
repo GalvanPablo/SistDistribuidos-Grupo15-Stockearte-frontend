@@ -14,6 +14,7 @@ import { API_AUTH } from '../../../data/api';
 
 const Producto = () => {
     const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
+    const idUsuario = useSelector(state => state.auth.idUsuario);
 
     const Item = ({ codigo, nombre, talle, color, tienda }) => (
         <tr className={styles.tabla__fila}>
@@ -22,7 +23,7 @@ const Producto = () => {
             <td>{talle}</td>
             <td>{color}</td>
             {deCentral && (
-                <td>{tienda}</td>
+                <td>{tienda?.codigo}</td>
             )}
             <td>
                 <Link to={`/productos/producto/${codigo}`} title='ver detalle'>
@@ -41,14 +42,12 @@ const Producto = () => {
 
     const obtenerListado = () => {
         const filtros = {
+            idUsuario,
             codigo,
             nombre,
             talle,
             color
         }
-
-        console.log(API_PRODUCTO.LISTADO);
-        console.log(filtros);
 
         fetch(API_PRODUCTO.LISTADO, {
             method: 'POST',
@@ -66,7 +65,7 @@ const Producto = () => {
 
     React.useEffect(() => {
         obtenerListado();
-    }, [codigo, nombre, talle, color]); // BUSCAR EN CADA CAMBIO DE FILTRO
+    }, [idUsuario, codigo, nombre, talle, color]); // BUSCAR EN CADA CAMBIO DE FILTRO
 
     return (
         <>
@@ -107,6 +106,7 @@ const Producto = () => {
                                 nombre={producto.nombre}
                                 talle={producto.talle}
                                 color={producto.color}
+                                tienda={producto.tienda}
                             />
                         ))}
                     </tbody>

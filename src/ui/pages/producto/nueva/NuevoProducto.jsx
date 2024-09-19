@@ -63,6 +63,7 @@ const NuevoProducto = () => {
                     <TextInput
                         label={"Imagen"}
                         onChange={(value) => setImagen(value)}
+                        maxLength={1000}
                     />
                     <button type="button" className={styles.btn_guardar} onClick={guardarOnClick}>
                         Guardar

@@ -7,11 +7,12 @@ import { useParams } from 'react-router-dom'
 import { TextInput } from '../../../components'
 
 import { API_PRODUCTO } from '../../../../data/api'
-//import { API_AUTH } from '../../../../data/api';
-//import { useSelector } from 'react-redux';
+import { API_AUTH } from '../../../../data/api';
+import { useSelector } from 'react-redux';
 
 const DetalleProducto = () => {
-    //const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
+    const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
+
     const detallesVisualizacion = useParams();
     const codigo = detallesVisualizacion.id;
     const [idProducto, setIdProducto] = React.useState();

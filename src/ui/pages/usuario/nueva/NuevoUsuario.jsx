@@ -54,8 +54,6 @@ const NuevoUsuario = () => {
             rol
         }
 
-        console.table(usuario);
-
         fetch(API_USUARIO.ALTA, {
             method: 'POST',
             headers: {

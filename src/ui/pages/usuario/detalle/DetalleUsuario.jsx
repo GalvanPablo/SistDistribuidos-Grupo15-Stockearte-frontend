@@ -42,7 +42,6 @@ const DetalleUsuario = () => {
     // ACCIONES
     const guardarOnClick = () => {
         const modificaciones = { idUsuario, nombre, email, clave, habilitado: estado };
-        console.table(modificaciones);
 
         fetch(API_USUARIO.MODIFICAR, {
             method: 'PUT', headers: {

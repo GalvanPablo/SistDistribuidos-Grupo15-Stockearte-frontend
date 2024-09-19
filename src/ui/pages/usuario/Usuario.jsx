@@ -36,8 +36,6 @@ const Usuario = () => {
             // ...(codigoTienda.length !== 0 && {codigo: codigoTienda})
         }
 
-        console.table(filtros);
-
         fetch(API_USUARIO.LISTADO, {
             method: 'POST',
             headers: {
