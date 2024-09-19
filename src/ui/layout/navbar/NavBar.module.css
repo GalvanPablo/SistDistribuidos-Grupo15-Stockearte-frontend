@@ -50,6 +50,7 @@
     height: 54px;
     border-radius: 100%;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .user__image img {
