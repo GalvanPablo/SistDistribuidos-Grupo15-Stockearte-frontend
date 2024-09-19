@@ -337,10 +337,12 @@ const DetalleTienda = () => {
                     </div>
                     <table>
                         <thead>
-                            <th>Nombre</th>
-                            <th>Talle</th>
-                            <th>Color</th>
-                            <th className={styles.columna_accion}></th>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Talle</th>
+                                <th>Color</th>
+                                <th className={styles.columna_accion}></th>
+                            </tr>
                         </thead>
                         <tbody>
                             {productosAsociados.map((producto, index) => (
