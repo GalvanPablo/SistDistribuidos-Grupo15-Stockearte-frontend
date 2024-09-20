@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+> **Grupo 15:** Trabajo grupal para la materia de sistemas distribuidos que implementa una arquitectura distribuida utilizando gRPC. El servidor gRPC está desarrollado en Java 17 con Spring, mientras que el cliente gRPC está implementado en C#. La base de datos utilizada es MySQL. Además, se integra un frontend desarrollado en React que se conecta al cliente  gRPC para proporcionar una interfaz de usuario.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 
 
-## Available Scripts
+# FrontEnd de Stockearte
+Este proyecto utiliza React para crear una aplicación web dinámica e interactiva.
 
-In the project directory, you can run:
+De fondo se conecta a un [backend de sistemas distribuidos](https://github.com/FrancoPonce14/SistDistribuidos-Grupo15-Stockearte-backend) mediante API
 
-### `npm start`
+## Requisitos previos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* [Node.js](https://nodejs.org/en/download/package-manager/current)
+* npm (gestor de paquetes incluido con Node.js)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Puesta en marcha del proyecto
+### Clonar repositorio
+```bash
+git clone https://github.com/GalvanPablo/SistDistribuidos-Grupo15-Stockearte-frontend.git
+```
+### Acceder al proyecto e instalar dependencias
+```bash
+cd SistDistribuidos-Grupo15-Stockearte-frontend
+npm install
+```
+### Ejecutar proyecto
+```bash
+npm start
+```
 
-### `npm test`
+## Recursos Adicionales
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Documentación de React](https://es.react.dev/learn)
