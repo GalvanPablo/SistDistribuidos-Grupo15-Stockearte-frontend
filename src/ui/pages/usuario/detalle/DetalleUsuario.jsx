@@ -64,8 +64,9 @@ const DetalleUsuario = () => {
             {finalizado && <Navigate to={"/usuarios"} />}
             <h1>
                 <FontAwesomeIcon icon={faUser} />
-                <span>Modificar Usuario</span>
+                <span>Detalle del Usuario</span>
             </h1>
+              <span>Modificar Usuario</span>
             <div>
                 <form className={styles.form}>
                     <TextInput

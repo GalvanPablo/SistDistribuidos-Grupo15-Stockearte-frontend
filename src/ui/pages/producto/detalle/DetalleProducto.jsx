@@ -24,7 +24,6 @@ const DetalleProducto = () => {
     const [color, setColor] = React.useState('');
     const [imagen, setImagen] = React.useState('');
     const [estado, setEstado] = React.useState();
-    const [stock, setStock] = React.useState();
 
     const [finalizado, setFinalizado] = React.useState(false);
 
@@ -52,12 +51,14 @@ const DetalleProducto = () => {
 
     // ACCIONES
     const guardarOnClick = () => {
+        const modificaciones = { idProducto, codigo, nombre, talle, color, imagen, habilitado: estado };
+
         fetch(API_PRODUCTO.MODIFICAR, {
             method: 'PUT', headers: {
                 // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ idProducto, codigo, nombre, talle, color, imagen, habilitado: estado }),
+            body: JSON.stringify(modificaciones),
         })
             .then(response => response.json())
             .then(response => {
@@ -96,11 +97,7 @@ const DetalleProducto = () => {
                         value={imagen}
                         onChange={(value) => setImagen(value)}
                     />
-                     <TextInput
-                        label={"Stock"}
-                        value={stock}
-                        onChange={(value) => setStock(value)}
-                    />
+                
 
                     <div className={styles.input_estado}>
                         <label htmlFor="habilitada">Estado</label>

@@ -233,7 +233,7 @@ const DetalleTienda = () => {
         <div>
             <h1>
                 <FontAwesomeIcon icon={faShop} />
-                <span>{codigo}</span>
+                <span>Detalle de la Tienda: {codigo}</span>
             </h1>
             <div>
                 <form className={styles.form}>

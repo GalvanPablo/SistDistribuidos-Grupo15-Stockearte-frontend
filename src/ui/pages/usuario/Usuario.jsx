@@ -17,7 +17,7 @@ const Usuario = () => {
             <td>{tienda.codigo}</td>
             <td>{estado}</td>
             <td className={styles.tabla__celdaAciones}>
-                <Link to={`/usuarios/usuario/${id}`} title='ver detalle'> {/*revisar*/}
+                <Link to={`/usuarios/usuario/${id}`} title='ver detalle'>
                     <FontAwesomeIcon icon={faFilePen} className={styles.icono_detalles}/>
                 </Link>
             </td>
