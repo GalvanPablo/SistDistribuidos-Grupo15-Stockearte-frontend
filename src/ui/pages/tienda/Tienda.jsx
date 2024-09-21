@@ -75,6 +75,7 @@ const Tienda = () => {
                             <th className={styles.columna_codigo}>Código</th>
                             <th>Estado</th>
                             <th className={styles.columna_acciones}>Detalle</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody className={styles.tabla__cuerpo}>

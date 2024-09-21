@@ -45,7 +45,7 @@ function App() {
 
                                 <Route path='/productos' element={<Producto />} />
                                 <Route path='/productos/nueva' element={<NuevoProducto />} />
-                                <Route path="/productos/producto/:codigoProducto" element={<DetalleProducto />} />
+                                <Route path="/productos/producto/:codigoProducto" element={<DetalleProducto />} /> {/* Saque el idTienda porque me redireccionaba a una pagina en blanco */}
 
 
                             </Routes>

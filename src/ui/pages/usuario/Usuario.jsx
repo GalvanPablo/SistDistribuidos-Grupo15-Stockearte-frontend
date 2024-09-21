@@ -88,8 +88,8 @@ const Usuario = () => {
                                 estado={usuario.habilitado?'Habilitado':'Deshabilitado'}
                                 id={usuario.idUsuario}
                             />
-                        ))}
-                    </tbody>
+                        ))}                 
+                    </tbody>           
                 </table>
             </div>
      </>

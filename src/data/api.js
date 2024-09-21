@@ -5,6 +5,7 @@ export const API_TIENDA = {
     LISTADO: API_URL + 'Tienda/TraerTiendas',
     OBTENER: API_URL + 'Tienda/DetalleTiendas',
     MODIFICAR: API_URL + 'Tienda/ModificarTienda',
+    //BAJA: API_URL + 'Tienda/EliminarTienda',
 
     USUARIO_ASIGNAR: API_URL + 'Tienda/AsignarUsuario',
     USUARIO_DESASIGNAR: API_URL + 'Tienda/DesasignarUsuario',
@@ -18,6 +19,7 @@ export const API_PRODUCTO = {
     LISTADO: API_URL + 'Producto/TraerProducto',
     OBTENER: API_URL + 'Producto/Detalle', //HAY QUE MANIPULAR LA PARTE DE STOCK
     MODIFICAR: API_URL + 'Producto/ModificarProducto',
+    //BAJA: API_URL + 'Producto/EliminarProducto',
 
     NO_ASIGNADOS: API_URL + 'Producto/GetProductosNoAsociados',
     ASIGNADOS: API_URL + 'Producto/GetProductosAsociados'
@@ -28,6 +30,7 @@ export const API_USUARIO = {
     LISTADO: API_URL + 'Usuario/TraerUsuarios',
     OBTENER: API_URL + 'Usuario/Detalle',
     MODIFICAR: API_URL + 'Usuario/ModificarUsuario',
+    //BAJA: API_URL + 'Usuario/EliminarUsuario',
 
     NO_ASIGNADOS: API_URL + 'Usuario/GetUsuariosNoAsignados',
     ASIGNADOS: API_URL + 'Usuario/GetUsuariosAsignados'

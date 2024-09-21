@@ -266,6 +266,9 @@ const DetalleTienda = () => {
                     <button type="button" className={styles.btn_guardar} onClick={guardarOnClick}>
                         Guardar
                     </button>
+                    <button type="button" className={styles.btn_eliminar}>
+                        Eliminar
+                    </button>
                 </form>
             </div>
             <div className={styles.listviews__container}>
