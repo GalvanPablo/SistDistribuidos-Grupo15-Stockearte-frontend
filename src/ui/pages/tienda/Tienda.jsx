@@ -2,14 +2,11 @@ import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter, faFilePen } from '@fortawesome/free-solid-svg-icons'
-
 import styles from "./Tienda.module.css"
 
 import { Link } from 'react-router-dom'
 
 import { API_TIENDA } from '../../../data/api'
-
-
 
 const Tienda = () => {
     const Item = ({ codigo, estado }) => (
@@ -77,7 +74,7 @@ const Tienda = () => {
                         <tr>
                             <th className={styles.columna_codigo}>Código</th>
                             <th>Estado</th>
-                            <th className={styles.columna_acciones}>Acciones</th>
+                            <th className={styles.columna_acciones}>Detalle</th>
                         </tr>
                     </thead>
                     <tbody className={styles.tabla__cuerpo}>

@@ -45,7 +45,7 @@ function App() {
 
                                 <Route path='/productos' element={<Producto />} />
                                 <Route path='/productos/nueva' element={<NuevoProducto />} />
-                                <Route path="/productos/producto/:codigoProducto/:idTienda" element={<DetalleProducto />} />
+                                <Route path="/productos/producto/:codigoProducto" element={<DetalleProducto />} />
 
 
                             </Routes>

@@ -76,7 +76,7 @@ const Usuario = () => {
                             <th>Nombre</th>
                             <th>Tienda</th>
                             <th>Estado</th>
-                            <th className={styles.columna_acciones}>Acciones</th>
+                            <th className={styles.columna_acciones}>Detalle</th>
                         </tr>
                     </thead>
                     <tbody className={styles.tabla__cuerpo}>

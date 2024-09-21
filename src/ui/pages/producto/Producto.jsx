@@ -73,7 +73,9 @@ const Producto = () => {
             <div className={styles.listado}>
 
                 <div className={styles.toolbar}>
+                    {deCentral &&
                     <Link to={`/productos/nueva`} className={styles.nuevo}>Nuevo Producto</Link>
+                     }
                     <div className={styles.toolbar__filtro__container}>
                         <input type="text" name="" id="" placeholder='Codigo' onChange={(e) => setCodigo(e.target.value)}/>
                         <input type="text" name="" id="" placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
@@ -95,7 +97,7 @@ const Producto = () => {
                             {deCentral && (
                                 <th>Tienda</th>
                             )}
-                            <th className={styles.columna_acciones}>Acciones</th>
+                            <th className={styles.columna_acciones}>Detalle</th>
                         </tr>
                     </thead>
                     <tbody className={styles.tabla__cuerpo}>

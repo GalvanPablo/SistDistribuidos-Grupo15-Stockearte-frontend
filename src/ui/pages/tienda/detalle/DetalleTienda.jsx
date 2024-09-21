@@ -5,10 +5,10 @@ import { TextInput, Modal } from '../../../components'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShop, faLink, faLinkSlash } from '@fortawesome/free-solid-svg-icons'
+import styles from './DetalleTienda.module.css'
 
 import { API_TIENDA, API_USUARIO, API_PRODUCTO } from '../../../../data/api';
 
-import styles from './DetalleTienda.module.css'
 const DetalleTienda = () => {
     const detallesVisualizacion = useParams();
     const codigo = detallesVisualizacion.id;
@@ -276,7 +276,7 @@ const DetalleTienda = () => {
                             <Modal
                                 title={'Asignar Usuario'}
                                 width={'500px'}
-                                btnAction={'Asginar'}
+                                btnAction={'Asignar'}
                             >
                                 <table>
                                     <thead>
@@ -315,7 +315,7 @@ const DetalleTienda = () => {
                             <Modal
                                 title={'Asignar Producto'}
                                 width={'500px'}
-                                btnAction={'Asginar'}
+                                btnAction={'Asignar'}
                             >
                                 <table>
                                     <thead>

@@ -1,10 +1,9 @@
 import React from 'react'
 
 import styles from './DetalleUsuario.module.css'
-
 import { useParams } from "react-router-dom"
-import { TextInput } from '../../../components'
 
+import { TextInput } from '../../../components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 

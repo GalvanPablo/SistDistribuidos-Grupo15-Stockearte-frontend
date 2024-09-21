@@ -1,14 +1,17 @@
 import React from 'react'
 
 import styles from './DetalleProducto.module.css'
-
 import { useParams } from 'react-router-dom'
 
 import { TextInput } from '../../../components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTags } from '@fortawesome/free-solid-svg-icons'
 
 import { API_PRODUCTO } from '../../../../data/api'
 import { API_AUTH } from '../../../../data/api';
 import { useSelector } from 'react-redux';
+
+import { Navigate } from 'react-router-dom'
 
 const DetalleProducto = () => {
     const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
@@ -21,6 +24,9 @@ const DetalleProducto = () => {
     const [color, setColor] = React.useState('');
     const [imagen, setImagen] = React.useState('');
     const [estado, setEstado] = React.useState();
+    const [stock, setStock] = React.useState();
+
+    const [finalizado, setFinalizado] = React.useState(false);
 
     React.useEffect(() => {
         fetch(API_PRODUCTO.OBTENER, {
@@ -42,7 +48,7 @@ const DetalleProducto = () => {
                 setImagen(response.imagen);
                 setEstado(response.habilitado);
             })
-    }, []);
+    }, [codigo]);
 
     // ACCIONES
     const guardarOnClick = () => {
@@ -56,14 +62,18 @@ const DetalleProducto = () => {
             .then(response => response.json())
             .then(response => {
                 alert('Cambios guardados')
+                setFinalizado(true)
             })
     };
 
     return (
         <div>
+            {finalizado && <Navigate to={"/productos"} />}
             <h1>
-                <span>{codigo}</span>
+               <FontAwesomeIcon icon={faTags} />
+               <span>Detalle del Producto</span>
             </h1>
+            <span>Modificar Producto</span>
             <div>
                 <form className={styles.form}>
                     <TextInput
@@ -86,6 +96,12 @@ const DetalleProducto = () => {
                         value={imagen}
                         onChange={(value) => setImagen(value)}
                     />
+                     <TextInput
+                        label={"Stock"}
+                        value={stock}
+                        onChange={(value) => setStock(value)}
+                    />
+
                     <div className={styles.input_estado}>
                         <label htmlFor="habilitada">Estado</label>
                         <select name="habilitada" id="habilitada"

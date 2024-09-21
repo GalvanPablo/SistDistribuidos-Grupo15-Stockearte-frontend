@@ -1,0 +1,50 @@
+h1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.form {
+    margin-top: 20px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.input_estado {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_estado label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.input_estado select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn_guardar {
+    padding: 6px;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 1rem;
+
+    border: 1px solid var(--primary-color);
+    background-color: var(--green-color);
+
+    cursor: pointer;
+}
+
+.btn_guardar:hover {
+    filter: brightness(1.2);
+}
