@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter, faFilePen } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faFilePen, faBucket } from '@fortawesome/free-solid-svg-icons'
 import styles from "./Tienda.module.css"
 
 import { Link } from 'react-router-dom'
@@ -17,6 +17,9 @@ const Tienda = () => {
                 <Link to={`/tiendas/tienda/${codigo}`} title='ver detalle'>
                     <FontAwesomeIcon icon={faFilePen} className={styles.icono_detalles}/>
                 </Link>
+            </td >
+            <td >
+              <FontAwesomeIcon icon={faBucket} className={styles.icono_eliminar}/>
             </td>
         </tr>
     );
@@ -66,6 +69,7 @@ const Tienda = () => {
                         <button onClick={obtenerListado}>
                             <FontAwesomeIcon icon={faFilter} />
                         </button>
+
                     </div>
                 </div>
 

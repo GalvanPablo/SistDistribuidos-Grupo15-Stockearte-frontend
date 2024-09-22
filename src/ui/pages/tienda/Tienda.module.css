@@ -101,3 +101,7 @@
 .icono_detalles:hover {
     color: var(--seconday_color);
 }
+
+.icono_eliminar {
+    color: var(--danger-color);
+}
