@@ -1,9 +1,10 @@
 import React from 'react'
 
 import styles from './DetalleUsuario.module.css'
-import { useParams } from "react-router-dom"
 
+import { useParams } from "react-router-dom"
 import { TextInput } from '../../../components'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
@@ -64,9 +65,8 @@ const DetalleUsuario = () => {
             {finalizado && <Navigate to={"/usuarios"} />}
             <h1>
                 <FontAwesomeIcon icon={faUser} />
-                <span>Detalle del Usuario</span>
+                <span>Modificar Usuario</span>
             </h1>
-              <span>Modificar Usuario</span>
             <div>
                 <form className={styles.form}>
                     <TextInput
@@ -98,9 +98,6 @@ const DetalleUsuario = () => {
 
                     <button type="button" className={styles.btn_guardar} onClick={guardarOnClick}>
                         Guardar
-                    </button>
-                    <button type="button" className={styles.btn_eliminar}>
-                        Eliminar
                     </button>
                 </form>
             </div>

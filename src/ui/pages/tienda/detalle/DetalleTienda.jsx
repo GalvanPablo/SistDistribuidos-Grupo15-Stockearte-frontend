@@ -5,10 +5,10 @@ import { TextInput, Modal } from '../../../components'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShop, faLink, faLinkSlash } from '@fortawesome/free-solid-svg-icons'
-import styles from './DetalleTienda.module.css'
 
 import { API_TIENDA, API_USUARIO, API_PRODUCTO } from '../../../../data/api';
 
+import styles from './DetalleTienda.module.css'
 const DetalleTienda = () => {
     const detallesVisualizacion = useParams();
     const codigo = detallesVisualizacion.id;
@@ -233,7 +233,8 @@ const DetalleTienda = () => {
         <div>
             <h1>
                 <FontAwesomeIcon icon={faShop} />
-                <span>Detalle de la Tienda: {codigo}</span>
+                <span>Tienda </span>
+                <span>{codigo}</span>
             </h1>
             <div>
                 <form className={styles.form}>
@@ -265,9 +266,6 @@ const DetalleTienda = () => {
 
                     <button type="button" className={styles.btn_guardar} onClick={guardarOnClick}>
                         Guardar
-                    </button>
-                    <button type="button" className={styles.btn_eliminar}>
-                        Eliminar
                     </button>
                 </form>
             </div>

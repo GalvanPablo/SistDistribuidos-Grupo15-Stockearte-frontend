@@ -17,12 +17,14 @@ export const API_TIENDA = {
 export const API_PRODUCTO = {
     ALTA: API_URL + 'Producto/CrearProducto',
     LISTADO: API_URL + 'Producto/TraerProducto',
-    OBTENER: API_URL + 'Producto/Detalle', //HAY QUE MANIPULAR LA PARTE DE STOCK
+    OBTENER: API_URL + 'Producto/Detalle',
     MODIFICAR: API_URL + 'Producto/ModificarProducto',
     //BAJA: API_URL + 'Producto/EliminarProducto',
 
     NO_ASIGNADOS: API_URL + 'Producto/GetProductosNoAsociados',
-    ASIGNADOS: API_URL + 'Producto/GetProductosAsociados'
+    ASIGNADOS: API_URL + 'Producto/GetProductosAsociados',
+
+    MODIFICAR_STOCK: API_URL + 'Tienda/ModificarStock'
 }
 
 export const API_USUARIO = {

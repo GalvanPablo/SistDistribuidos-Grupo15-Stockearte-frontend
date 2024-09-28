@@ -46,7 +46,7 @@ const Usuario = () => {
         })
             .then(response => response.json())
             .then(response => {
-                setUsuarios(response.usuarios); //! NO TRAE DATOS DE LA TIENDA RELACIONADA ADEMASD DE QUE FILTRA SIN QUE SE LO ESPECIFIQUE A TODOS LOS USUARIOS CON TIENDAS
+                setUsuarios(response.usuarios);
             })
     };
 
@@ -76,7 +76,7 @@ const Usuario = () => {
                             <th>Nombre</th>
                             <th>Tienda</th>
                             <th>Estado</th>
-                            <th className={styles.columna_acciones}>Detalle</th>
+                            <th className={styles.columna_acciones}>Acciones</th>
                         </tr>
                     </thead>
                     <tbody className={styles.tabla__cuerpo}>
@@ -88,8 +88,8 @@ const Usuario = () => {
                                 estado={usuario.habilitado?'Habilitado':'Deshabilitado'}
                                 id={usuario.idUsuario}
                             />
-                        ))}                 
-                    </tbody>           
+                        ))}
+                    </tbody>
                 </table>
             </div>
      </>

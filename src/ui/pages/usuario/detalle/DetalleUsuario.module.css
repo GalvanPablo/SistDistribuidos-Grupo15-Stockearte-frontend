@@ -45,18 +45,6 @@ h1 {
     cursor: pointer;
 }
 
-.btn_eliminar {
-    padding: 6px;
-    border-radius: 5px;
-    font-weight: normal;
-    font-size: 1rem;
-
-    border: 1px solid var(--danger-color);
-    background-color: red;
-
-    cursor: pointer;
-}
-
 .btn_guardar:hover {
     filter: brightness(1.2);
 }

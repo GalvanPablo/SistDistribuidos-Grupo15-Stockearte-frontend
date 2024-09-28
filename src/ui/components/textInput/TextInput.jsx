@@ -29,7 +29,7 @@ const TextInput = ({
     };
 
     return (
-        <div className={styles.input} style={{ width: width ? width : 'unset' }}>
+        <div className={styles.input} style={{ width: width ? width : '100%' }}>
             <span className={styles.input__label}>{label}</span>
             {helperText && (
                 <span className={styles.input__helper}>{helperText}</span>

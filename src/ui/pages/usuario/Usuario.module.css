@@ -84,3 +84,11 @@
 .tabla th {
     font-weight: bold;
 }
+
+.icono_detalles {
+    color: var(--dark-color);
+}
+
+.icono_detalles:hover {
+    color: var(--seconday_color);
+}

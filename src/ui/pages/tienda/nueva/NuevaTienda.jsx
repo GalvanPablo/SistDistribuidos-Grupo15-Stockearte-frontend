@@ -30,21 +30,17 @@ const NuevaTienda = () => {
             },
             body: JSON.stringify(tienda),
         })
+            .then(response => response.json())
             .then(response => {
-                if (!response.ok) {
-                    response.text().then(text => {
-                        alert(`ERROR: ${response.status}\n${text}`);
-                        // TODO HACE FALTA VER EL MSJ DE VALIDACIÓN PARA MANEJAR EL ERROR DE CODIGO DUPLICADO
-                        setCodigoError(true);
-                    });
-                } else {
-                    response.json();
+                if (response.estado) {
                     setFinalizado(true);
+                } else {
+                    setCodigoError(true);
                 }
             })
     };
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         setCodigoError(false);
     }, [codigo]);
 

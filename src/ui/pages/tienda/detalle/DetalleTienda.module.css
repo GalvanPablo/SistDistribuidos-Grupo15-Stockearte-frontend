@@ -22,7 +22,7 @@
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
-    width: 100%;
+    width: 200px;
     box-sizing: border-box;
 }
 
@@ -35,18 +35,6 @@
 
     border: 1px solid var(--primary-color);
     background-color: var(--green-color);
-
-    cursor: pointer;
-}
-
-.btn_eliminar {
-    padding: 6px;
-    border-radius: 5px;
-    font-weight: normal;
-    font-size: 1rem;
-
-    border: 1px solid var(--danger-color);
-    background-color: red;
 
     cursor: pointer;
 }
