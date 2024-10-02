@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 import styles from "./SideBar.module.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShop, faTags, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faShop, faTags, faUser, faFireFlameCurved } from '@fortawesome/free-solid-svg-icons'
 
 import { API_AUTH } from '../../../data/api';
 
@@ -47,20 +47,34 @@ const SideBar = () => {
                     </NavLink>
                 </li>
                 {deCentral && (
-
-                    <li className={styles.navListItem}>
-                        <NavLink
-                            to="/usuarios"
-                            className={({ isActive }) =>
-                                isActive
-                                    ? `${styles.navListItemLink} ${styles.active}`
-                                    : styles.navListItemLink
-                            }
-                        >
-                            <FontAwesomeIcon icon={faUser} />
-                            <span>Usuarios</span>
-                        </NavLink>
-                    </li>
+                    <>
+                        <li className={styles.navListItem}>
+                            <NavLink
+                                to="/usuarios"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? `${styles.navListItemLink} ${styles.active}`
+                                        : styles.navListItemLink
+                                }
+                            >
+                                <FontAwesomeIcon icon={faUser} />
+                                <span>Usuarios</span>
+                            </NavLink>
+                        </li>
+                        <li className={styles.navListItem}>
+                            <NavLink
+                                to="/novedades"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? `${styles.navListItemLink} ${styles.active}`
+                                        : styles.navListItemLink
+                                }
+                            >
+                                <FontAwesomeIcon icon={faFireFlameCurved} />
+                                <span>Novedades</span>
+                            </NavLink>
+                        </li>
+                    </>
                 )}
             </ul>
         </nav>

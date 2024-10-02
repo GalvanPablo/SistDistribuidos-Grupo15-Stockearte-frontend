@@ -8,7 +8,13 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { NavBar, SideBar } from './ui/layout';
 
 // Paginas
-import { Auth, Tienda, NuevaTienda, DetalleTienda, Producto, NuevoProducto, DetalleProducto, Usuario, NuevoUsuario, DetalleUsuario } from './ui/pages';
+import {
+    Auth,
+    Tienda, NuevaTienda, DetalleTienda,
+    Producto, NuevoProducto, DetalleProducto,
+    Usuario, NuevoUsuario, DetalleUsuario,
+    Novedad
+} from './ui/pages';
 
 import { API_AUTH } from './data/api';
 
@@ -40,13 +46,14 @@ function App() {
                                         <Route path='/usuarios' element={<Usuario />} />
                                         <Route path='/usuarios/nueva' element={<NuevoUsuario />} />
                                         <Route path='/usuarios/usuario/:id' element={<DetalleUsuario />} />
+                                        
+                                        <Route path='/novedades' element={<Novedad />} />
                                     </>
                                 )}
 
                                 <Route path='/productos' element={<Producto />} />
                                 <Route path='/productos/nueva' element={<NuevoProducto />} />
                                 <Route path="/productos/producto/:codigoProducto/:idTienda" element={<DetalleProducto />} />
-
 
                             </Routes>
                         </div>

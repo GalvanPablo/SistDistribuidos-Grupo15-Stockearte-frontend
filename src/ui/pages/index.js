@@ -11,3 +11,6 @@ export { default as DetalleProducto } from './producto/detalle/DetalleProducto'
 export { default as Usuario } from './usuario/Usuario'
 export { default as NuevoUsuario } from './usuario/nueva/NuevoUsuario'
 export { default as DetalleUsuario } from './usuario/detalle/DetalleUsuario'
+
+
+export { default as Novedad } from './novedad/Novedad'
