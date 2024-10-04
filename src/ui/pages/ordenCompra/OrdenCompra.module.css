@@ -1,0 +1,116 @@
+.listado {
+    margin-top: 20px;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-bottom: none;
+}
+
+.toolbar .nuevo,
+.toolbar button {
+    background-color: var(--seconday_color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toolbar .nuevo:hover {
+    background-color: var(--primary-color);
+}
+
+.toolbar .nuevo {
+    text-decoration: none;
+}
+
+.toolbar button:hover {
+    background-color: #3e8e41;
+}
+
+.toolbar__filtro__container {
+    display: flex;
+    align-items: center;
+}
+
+.toolbar__filtro__container input,
+.toolbar__filtro__container select {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+.toolbar__filtro__container button {
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.tabla__encabezado {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.columna_codigo {
+    width: 300px;
+}
+
+.columna_acciones {
+    width: 100px;
+}
+
+.tabla__cuerpo {
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla__fila {
+    border-top: 1px solid #ddd;
+}
+
+.tabla__fila:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla th,
+.tabla td {
+    padding: 8px;
+    text-align: left;
+}
+
+.tabla th {
+    font-weight: bold;
+}
+
+.bntRecibir {
+    background-color: var(--seconday_color);
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.bntRecibir:hover {
+    background-color: var(--primary-color);
+}
+
+.bntRecibir:focus {
+    outline: none;
+}
