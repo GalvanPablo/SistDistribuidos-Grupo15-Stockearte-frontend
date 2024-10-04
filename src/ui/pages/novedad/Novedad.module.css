@@ -66,9 +66,10 @@
 
     max-width: 250px;
     height: 39px;
+    transition: background-color 0.2s;
 }
 
-.novedad__btnAgregar span{
+.novedad__btnAgregar span {
     text-wrap: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -76,4 +77,70 @@
 
 .novedad__btnAgregar:hover {
     background-color: #3e8e41;
+}
+
+.modal_novedad_encabezado {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 50px;
+    min-width: 500px;
+}
+
+.modal_novedad_encabezado button{
+    padding: 5px 10px;
+    border-radius: 2px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal_novedad_encabezado button:hover {
+    background-color: #3e8e41;
+}
+
+.modal_novedad_info {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.modal_novedad_info span {
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+
+.modal_novedad_body table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal_novedad_body th,
+.modal_novedad_body td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.modal_novedad_body th {
+    background-color: #f0f0f0;
+}
+
+.modal_novedad_body td {
+    background-color: #fff;
+}
+
+.modal_novedad_body tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+input[type="checkbox"]{
+        width: 1rem;
+        height: 1rem;
 }
