@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 import styles from "./SideBar.module.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShop, faTags, faUser, faFireFlameCurved } from '@fortawesome/free-solid-svg-icons'
+import { faShop, faTags, faUser, faFireFlameCurved, faTruckFast } from '@fortawesome/free-solid-svg-icons'
 
 import { API_AUTH } from '../../../data/api';
 
@@ -75,6 +75,22 @@ const SideBar = () => {
                             </NavLink>
                         </li>
                     </>
+                )}
+
+                {!deCentral && (
+                    <li className={styles.navListItem}>
+                        <NavLink
+                            to="/ordenesDeCompra"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? `${styles.navListItemLink} ${styles.active}`
+                                    : styles.navListItemLink
+                            }
+                        >
+                            <FontAwesomeIcon icon={faTruckFast} />
+                            <span>Ordenes De Compra</span>
+                        </NavLink>
+                    </li>
                 )}
             </ul>
         </nav>

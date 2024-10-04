@@ -14,3 +14,8 @@ export { default as DetalleUsuario } from './usuario/detalle/DetalleUsuario'
 
 
 export { default as Novedad } from './novedad/Novedad'
+
+export { default as OrdenCompra } from './ordenCompra/OrdenCompra'
+export { default as NuevaOrdenCompra } from './ordenCompra/nueva/NuevaOrdenCompra'
+export { default as DetalleOrdenCompra } from './ordenCompra/detalle/DetalleOrdenCompra'
+

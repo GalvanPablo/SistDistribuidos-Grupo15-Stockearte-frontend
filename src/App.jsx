@@ -13,6 +13,7 @@ import {
     Tienda, NuevaTienda, DetalleTienda,
     Producto, NuevoProducto, DetalleProducto,
     Usuario, NuevoUsuario, DetalleUsuario,
+    OrdenCompra, NuevaOrdenCompra, DetalleOrdenCompra,
     Novedad
 } from './ui/pages';
 
@@ -37,7 +38,7 @@ function App() {
                                 <Route path='/auth' element={<Navigate to={deCentral ? "/tiendas" : "/productos"} />} />
                                 <Route path='/' element={<Navigate to={deCentral ? "/tiendas" : "/productos"} />} />
 
-                                {deCentral && (
+                                {deCentral ? (
                                     <>
                                         <Route path='/tiendas' element={<Tienda />} />
                                         <Route path='/tiendas/nueva' element={<NuevaTienda />} />
@@ -46,8 +47,14 @@ function App() {
                                         <Route path='/usuarios' element={<Usuario />} />
                                         <Route path='/usuarios/nueva' element={<NuevoUsuario />} />
                                         <Route path='/usuarios/usuario/:id' element={<DetalleUsuario />} />
-                                        
+
                                         <Route path='/novedades' element={<Novedad />} />
+                                    </>
+                                ) : (
+                                    <>
+                                        <Route path='/ordenesDeCompra' element={<OrdenCompra />} />
+                                        <Route path='/ordenesDeCompra/nueva' element={<NuevaOrdenCompra />} />
+                                        <Route path='/ordenesDeCompra/detalle/:id' element={<DetalleOrdenCompra />} />
                                     </>
                                 )}
 
