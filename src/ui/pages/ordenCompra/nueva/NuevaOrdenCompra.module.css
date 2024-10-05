@@ -1,0 +1,105 @@
+.detalle_ordenCompra {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.orden_interactuar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btnAgregarProducto {
+    background-color: var(--seconday_color);
+}
+
+.btnAgregarProducto:hover {
+    background-color: var(--primary-color);
+}
+
+.btnFinalizar {
+    background-color: var(--green-color);
+    width: 300px;
+}
+
+.btnFinalizar:hover {
+    background-color: var(--primary-color);
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.tabla__encabezado {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.columna_codigo {
+    width: 300px;
+}
+
+.columna_acciones {
+    width: 100px;
+}
+
+.tabla__cuerpo {
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla__fila {
+    border-top: 1px solid #ddd;
+}
+
+.tabla__fila:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla th,
+.tabla td {
+    padding: 8px;
+    text-align: left;
+}
+
+.tabla th {
+    font-weight: bold;
+}
+
+.btnEliminar {
+    border: 0;
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: var(--seconday_color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btnEliminar:hover{
+    color: red;
+}
+
+
+.btnAsignarProducto {
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: var(--green-color);
+}
+
+.btnAsignarProducto:hover{
+    color: var(--seconday_color);
+}

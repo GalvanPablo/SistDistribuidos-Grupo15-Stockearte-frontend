@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFileLines } from '@fortawesome/free-solid-svg-icons'
+
 import styles from './OrdenCompra.module.css'
 const OrdenCompra = () => {
     const [ordenesCompra, setOrdenesCompra] = useState([]);
@@ -71,13 +74,18 @@ const OrdenCompra = () => {
                         <span>{orden.fechaRecepcion}</span>
                     ) : orden.estado === 'Aceptada' && orden.despachada ? (
                         <button className={styles.bntRecibir}
-                            onClick={()=>{
+                            onClick={() => {
                                 alert(`Recibiendo la Orden: ${orden.codigoOrdenCompra}`)
                             }}
                         >
                             Recibir
                         </button>
                     ) : ''}
+                </td>
+                <td style={{textAlign: 'center'}}>
+                    <Link to={`/ordenesDeCompra/detalle/${orden.codigoOrdenCompra}}`} title='ver detalle'>
+                        <FontAwesomeIcon icon={faFileLines} className={styles.icono_detalles} />
+                    </Link>
                 </td>
             </tr>
         )
@@ -107,6 +115,7 @@ const OrdenCompra = () => {
                             <th>Estado</th>
                             <th>Observaciones</th>
                             <th>Recepción</th>
+                            <th className={styles.columna_acciones} style={{textAlign: 'center'}}>Detalle</th>
                         </tr>
                     </thead>
                     <tbody className={styles.tabla__cuerpo}>

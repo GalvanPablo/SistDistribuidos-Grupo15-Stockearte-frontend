@@ -114,3 +114,17 @@
 .bntRecibir:focus {
     outline: none;
 }
+
+.columna_acciones {
+    width: 80px;
+}
+
+
+.icono_detalles {
+    color: var(--dark-color);
+    font-size: 1.2rem;
+}
+
+.icono_detalles:hover {
+    color: var(--seconday_color);
+}
