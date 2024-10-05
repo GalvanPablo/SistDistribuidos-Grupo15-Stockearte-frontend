@@ -24,7 +24,9 @@ export const API_PRODUCTO = {
     NO_ASIGNADOS: API_URL + 'Producto/GetProductosNoAsociados',
     ASIGNADOS: API_URL + 'Producto/GetProductosAsociados',
 
-    MODIFICAR_STOCK: API_URL + 'Tienda/ModificarStock'
+    MODIFICAR_STOCK: API_URL + 'Tienda/ModificarStock',
+
+    NOVEDADES: API_URL + 'Producto/GetNovedadesProducto'
 }
 
 export const API_USUARIO = {

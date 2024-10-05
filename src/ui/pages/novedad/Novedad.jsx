@@ -6,6 +6,7 @@ import { faTags } from '@fortawesome/free-solid-svg-icons';
 import { ModalGeneric } from '../../components';
 
 import styles from './Novedad.module.css'
+import { API_PRODUCTO } from '../../../data/api';
 const Novedad = () => {
 
     const [novedades, setNovedades] = useState([]);
@@ -15,48 +16,18 @@ const Novedad = () => {
     const [seleccionados, setSeleccionados] = useState([]);
 
     useEffect(() => {
-        setNovedades([
-            {
-                codigo: 'AB13123',
-                nombre: 'Remera',
-                url: 'https://acdn.mitiendanube.com/stores/001/843/621/products/remera-mars-7c26d2c9fee69ac0e117038892666423-1024-1024.png',
-                disponibilidad: [
-                    { talle: 'XL', color: 'Negro' },
-                    { talle: 'XL', color: 'Azul' },
-                    { talle: 'M', color: 'Azul' },
-                ]
+        fetch(API_PRODUCTO.NOVEDADES, {
+            method: 'POST',
+            headers: {
+                // 'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             },
-            {
-                codigo: 'DF54362',
-                nombre: 'Jean',
-                url: 'https://www.jamessmart.com/home/wp-content/uploads/ART-25629-JEAN-5B-AZUL.jpg',
-                disponibilidad: [
-                    { talle: 'XL', color: 'Negro' },
-                    { talle: 'XL', color: 'Azul' },
-                    { talle: 'XL', color: 'Verde' },
-                    { talle: 'M', color: 'Negro' },
-                    { talle: 'S', color: 'Azul' },
-                ]
-            },
-            {
-                codigo: 'YS55731', nombre: 'Campera deportiva hombre', url: 'https://d22fxaf9t8d39k.cloudfront.net/fef31e28d0c12e87e1a13f437ab4687c6642c4bf8080601fb42dec83d6ee602b276731.webp',
-                disponibilidad: [
-                    { talle: 'XL', color: 'Negro' },
-                    { talle: 'XL', color: 'Azul' },
-                    { talle: 'XL', color: 'Verde' },
-                    { talle: 'M', color: 'Negro' },
-                    { talle: 'S', color: 'Azul' },
-                ]
-            },
-            {
-                codigo: 'YS55731', nombre: 'Campera deportiva hombre', url: 'https://d22fxaf9t8d39k.cloudfront.net/fef31e28d0c12e87e1a13f437ab4687c66c4bf8080601fb42dec83d6ee602b276731.webp',
-                disponibilidad: [
-                    { talle: 'XL', color: 'Negro' },
-                    { talle: 'XL', color: 'Azul' },
-                    { talle: 'M', color: 'Azul' },
-                ]
-            },
-        ])
+            body: JSON.stringify({}),
+        })
+            .then(response => response.json())
+            .then(response => {
+                setNovedades(response.novedades);
+            })
     }, []);
 
     const agregar_onClick = (novedad) => {
