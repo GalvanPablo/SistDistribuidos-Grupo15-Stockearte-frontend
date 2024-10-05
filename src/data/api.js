@@ -26,7 +26,8 @@ export const API_PRODUCTO = {
 
     MODIFICAR_STOCK: API_URL + 'Tienda/ModificarStock',
 
-    NOVEDADES: API_URL + 'Producto/GetNovedadesProducto'
+    NOVEDADES: API_URL + 'Producto/GetNovedadesProducto',
+    ALTA_NOVEDADES: API_URL + 'Producto/CrearProductos'
 }
 
 export const API_USUARIO = {

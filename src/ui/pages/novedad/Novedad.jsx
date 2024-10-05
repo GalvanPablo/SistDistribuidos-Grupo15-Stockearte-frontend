@@ -54,11 +54,28 @@ const Novedad = () => {
             codigo: novedadSeleccionada.codigo,
             nombre: novedadSeleccionada.nombre,
             url: novedadSeleccionada.url,
-            disponibilidad: seleccionados
+            habilitado: true,
+            tallesColores: seleccionados
         }
 
         console.log(novedad);
-        // Aquí puedes agregar la lógica para agregar los seleccionados al carrito o donde sea necesario
+
+        fetch(API_PRODUCTO.ALTA_NOVEDADES, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({datosProducto: novedad}),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    response.text().then(text => {
+                        alert(`ERROR: ${response.status}\n${text}`);
+                    });
+                } else {
+                    console.log(response.json());
+                }
+            })
 
         onCloseModal();
     };
