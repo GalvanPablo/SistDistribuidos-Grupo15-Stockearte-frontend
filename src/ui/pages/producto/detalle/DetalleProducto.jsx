@@ -58,7 +58,6 @@ const DetalleProducto = () => {
     // ACCIONES
     const guardarOnClick = () => {
         const modificacion = { idProducto, codigo: codigoProducto, nombre, talle, color, imagen, habilitado: estado }
-        console.table(modificacion);
         fetch(API_PRODUCTO.MODIFICAR, {
             method: 'PUT', headers: {
                 'Content-Type': 'application/json'
@@ -76,7 +75,7 @@ const DetalleProducto = () => {
         e.preventDefault();
 
         const modificacion = {
-            codigoProducto,
+            codigoProducto, //! HAY QUE REEMPLZARLO POR idProducto tanto aca como en el back
             codigoTienda,
             cantidad: parseInt(stock)
         }
