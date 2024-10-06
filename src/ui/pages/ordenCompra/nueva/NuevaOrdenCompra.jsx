@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-
+import { Navigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines, faXmark, faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 
 import { useSelector } from 'react-redux';
-import { API_PRODUCTO } from './../../../../data/api';
+import { API_PRODUCTO, API_TIENDA } from './../../../../data/api';
 
 import { ModalGeneric } from '../../../components';
 
@@ -82,12 +82,33 @@ const NuevaOrdenCompra = () => {
             })),
         };
 
+        fetch(API_TIENDA.AGREGAR_ORDEN_COMPRA, {
+            method: 'POST',
+            headers: {
+                // 'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orden),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    response.text().then(text => {
+                        alert(`ERROR: ${response.status}\n${text}`);
+                    });
+                } else {
+                    response.json();
+                    setFinalizado(true)
+                }
+            })
+
         if (orden.items.length > 0) {
             console.log(orden);
         } else {
             alert("No hay productos válidos para crear la orden");
         }
     };
+
+    const [finalizado, setFinalizado] = React.useState(false);
 
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => {

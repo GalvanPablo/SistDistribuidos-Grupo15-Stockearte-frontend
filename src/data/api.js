@@ -11,7 +11,11 @@ export const API_TIENDA = {
     USUARIO_DESASIGNAR: API_URL + 'Tienda/DesasignarUsuario',
 
     PRODUCTO_ASGINAR: API_URL + 'Tienda/AsignarProducto',
-    PRODUCTO_DESASGINAR: API_URL + 'Tienda/DesasignarProducto'
+    PRODUCTO_DESASGINAR: API_URL + 'Tienda/DesasignarProducto',
+
+    AGREGAR_ORDEN_COMPRA: API_URL + 'Tienda/CrearOrdenCompra',
+    TRAER_ORDEN_COMPRA: API_URL + 'Tienda/TraerOrdenCompra',
+    DETALLE_ORDEN_COMPRA: API_URL + 'Tienda/DetalleOrdenCompra'
 }
 
 export const API_PRODUCTO = {

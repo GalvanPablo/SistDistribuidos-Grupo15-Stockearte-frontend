@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 
 import styles from './DetalleOrdenCompra.module.css'
-import { Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { TextInput } from '../../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { API_ORDEN_DE_COMPRA } from '../../../../data/api'
+import { API_TIENDA } from '../../../../data/api'
 import { faFileExport, faCheckCircle, faExclamationTriangle, faRectangleTimes, faSkull } from '@fortawesome/free-solid-svg-icons'
 
 const DetalleOrdenCompra = () => {

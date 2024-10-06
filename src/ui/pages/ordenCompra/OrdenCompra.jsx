@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileLines } from '@fortawesome/free-solid-svg-icons'
 
+import { API_TIENDA } from '../../../data/api'
+
 import styles from './OrdenCompra.module.css'
 const OrdenCompra = () => {
     const [ordenesCompra, setOrdenesCompra] = useState([]);
