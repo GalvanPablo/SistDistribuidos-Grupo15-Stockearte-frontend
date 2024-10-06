@@ -36,11 +36,10 @@ const DetalleProducto = () => {
         fetch(API_PRODUCTO.OBTENER, {
             method: 'POST',
             headers: {
-                // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                codigoProducto,
+                idProducto: codigoProducto,
                 codigoTienda
             }),
         })

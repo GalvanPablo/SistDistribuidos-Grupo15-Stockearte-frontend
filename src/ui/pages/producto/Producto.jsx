@@ -16,7 +16,7 @@ const Producto = () => {
     const deCentral = useSelector(state => state.auth.rol) === API_AUTH.ROLES[1];
     const idUsuario = useSelector(state => state.auth.idUsuario);
 
-    const Item = ({ codigo, nombre, talle, color, tienda }) => (
+    const Item = ({ codigo, nombre, talle, color, tienda, id }) => (
         <tr className={styles.tabla__fila}>
             <td>{codigo}</td>
             <td>{nombre}</td>
@@ -26,7 +26,7 @@ const Producto = () => {
                 <td>{tienda?.codigo}</td>
             )}
             <td>
-                <Link to={`/productos/producto/${codigo}/${tienda?.codigo}`} title='ver detalle'>
+                <Link to={`/productos/producto/${id}/${tienda?.codigo}`} title='ver detalle'>
                     <FontAwesomeIcon icon={faFilePen} className={styles.icono_detalles}/>
                 </Link>
             </td>
@@ -104,6 +104,7 @@ const Producto = () => {
                         {productos.map((producto, index) => (
                             <Item
                                 key={index}
+                                id={producto.idProducto}
                                 codigo={producto.codigo}
                                 nombre={producto.nombre}
                                 talle={producto.talle}
