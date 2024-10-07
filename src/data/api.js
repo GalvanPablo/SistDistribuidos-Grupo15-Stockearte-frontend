@@ -15,7 +15,8 @@ export const API_TIENDA = {
 
     AGREGAR_ORDEN_COMPRA: API_URL + 'Tienda/CrearOrdenCompra',
     TRAER_ORDEN_COMPRA: API_URL + 'Tienda/TraerOrdenCompra',
-    DETALLE_ORDEN_COMPRA: API_URL + 'Tienda/DetalleOrdenCompra'
+    DETALLE_ORDEN_COMPRA: API_URL + 'Tienda/DetalleOrdenCompra',
+    RECIBIR_PEDIDO: API_URL + 'Tienda/RecibirPedido'
 }
 
 export const API_PRODUCTO = {

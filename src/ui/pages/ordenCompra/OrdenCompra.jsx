@@ -24,49 +24,6 @@ const OrdenCompra = () => {
     }, [estado])
 
     const getOrdenesCompra = () => {
-        // setOrdenesCompra([
-        //     {
-        //         codigoOrdenCompra: 'OC1',
-        //         fechaSolicitud: '28/09/2024',
-        //         estado: 'Solicitada',
-        //         observaciones: '',
-        //         fechaRecepcion: '',
-        //         despachada: false
-        //     },
-        //     {
-        //         codigoOrdenCompra: 'OC2',
-        //         fechaSolicitud: '27/09/2024',
-        //         estado: 'Aceptada',
-        //         observaciones: 'Stock faltante',
-        //         fechaRecepcion: '',
-        //         despachada: false
-        //     },
-        //     {
-        //         codigoOrdenCompra: 'OC3',
-        //         fechaSolicitud: '27/09/2024',
-        //         estado: 'Aceptada',
-        //         observaciones: '',
-        //         fechaRecepcion: '',
-        //         despachada: true
-        //     },
-        //     {
-        //         codigoOrdenCompra: 'OC4',
-        //         fechaSolicitud: '20/09/2024',
-        //         estado: 'Recibida',
-        //         observaciones: '',
-        //         fechaRecepcion: '21/09/24',
-        //         despachada: true
-        //     },
-        //     {
-        //         codigoOrdenCompra: 'OC5',
-        //         fechaSolicitud: '18/09/2024',
-        //         estado: 'Rechazada',
-        //         observaciones: 'Producto Inexistente',
-        //         fechaRecepcion: '',
-        //         despachada: false
-        //     },
-        // ]);
-
         fetch(API_TIENDA.TRAER_ORDEN_COMPRA, {
             method: 'POST',
             headers: {
@@ -82,6 +39,23 @@ const OrdenCompra = () => {
             })
     }
 
+    const recibirPedido = (idOrdenCompra) => {
+        alert(idOrdenCompra);
+        fetch(API_TIENDA.RECIBIR_PEDIDO, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idOrdenCompra
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                getOrdenesCompra();
+            })
+    }
+
     const ItemOC = ({ orden }) => {
         return (
             <tr className={styles.tabla__fila}>
@@ -89,13 +63,11 @@ const OrdenCompra = () => {
                 <td>{orden.estado}</td>
                 <td>{orden.observaciones}</td>
                 <td>
-                    {orden.estado === 'Recibida' && orden.despachada ? (
+                    {orden.estado === 'RECIBIDA' && orden.despachada ? (
                         <span>{orden.fechaRecepcion}</span>
-                    ) : orden.estado === 'Aceptada' && orden.despachada ? (
+                    ) : orden.estado === 'ACEPTADA' && orden.despachada ? (
                         <button className={styles.bntRecibir}
-                            onClick={() => {
-                                alert(`Recibiendo la Orden: ${orden.idOrdenCompra}`)
-                            }}
+                            onClick={()=>recibirPedido(orden.idOrdenCompra)}
                         >
                             Recibir
                         </button>
@@ -116,7 +88,7 @@ const OrdenCompra = () => {
             <div className={styles.listado}>
                 <div className={styles.toolbar}>
                     <Link to={'/ordenesDeCompra/nueva'} className={styles.nuevo}>Nueva Orden</Link>
-                    <div className={styles.toolbar__filtro__container}>
+                    {/* <div className={styles.toolbar__filtro__container}>
                         <select name="habilitado" id="habilitado" onChange={(e) => setEstado(e.target.value)}>
                             <option value="">Todas</option>
                             <option value="Solicitada">Solicitada</option>
@@ -124,7 +96,7 @@ const OrdenCompra = () => {
                             <option value="Aceptada">Aceptada</option>
                             <option value="Recibida">Recibida</option>
                         </select>
-                    </div>
+                    </div> */}
                 </div>
 
                 <table className={styles.tabla}>
