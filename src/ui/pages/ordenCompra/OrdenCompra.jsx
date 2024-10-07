@@ -8,7 +8,10 @@ import { faFileLines } from '@fortawesome/free-solid-svg-icons'
 import { API_TIENDA } from '../../../data/api'
 
 import styles from './OrdenCompra.module.css'
+import { useSelector } from 'react-redux'
 const OrdenCompra = () => {
+    const idUsuario = useSelector(state => state.auth.idUsuario);
+
     const [ordenesCompra, setOrdenesCompra] = useState([]);
     const [estado, setEstado] = useState('')
 
@@ -21,48 +24,62 @@ const OrdenCompra = () => {
     }, [estado])
 
     const getOrdenesCompra = () => {
-        setOrdenesCompra([
-            {
-                codigoOrdenCompra: 'OC1',
-                fechaSolicitud: '28/09/2024',
-                estado: 'Solicitada',
-                observaciones: '',
-                fechaRecepcion: '',
-                despachada: false
+        // setOrdenesCompra([
+        //     {
+        //         codigoOrdenCompra: 'OC1',
+        //         fechaSolicitud: '28/09/2024',
+        //         estado: 'Solicitada',
+        //         observaciones: '',
+        //         fechaRecepcion: '',
+        //         despachada: false
+        //     },
+        //     {
+        //         codigoOrdenCompra: 'OC2',
+        //         fechaSolicitud: '27/09/2024',
+        //         estado: 'Aceptada',
+        //         observaciones: 'Stock faltante',
+        //         fechaRecepcion: '',
+        //         despachada: false
+        //     },
+        //     {
+        //         codigoOrdenCompra: 'OC3',
+        //         fechaSolicitud: '27/09/2024',
+        //         estado: 'Aceptada',
+        //         observaciones: '',
+        //         fechaRecepcion: '',
+        //         despachada: true
+        //     },
+        //     {
+        //         codigoOrdenCompra: 'OC4',
+        //         fechaSolicitud: '20/09/2024',
+        //         estado: 'Recibida',
+        //         observaciones: '',
+        //         fechaRecepcion: '21/09/24',
+        //         despachada: true
+        //     },
+        //     {
+        //         codigoOrdenCompra: 'OC5',
+        //         fechaSolicitud: '18/09/2024',
+        //         estado: 'Rechazada',
+        //         observaciones: 'Producto Inexistente',
+        //         fechaRecepcion: '',
+        //         despachada: false
+        //     },
+        // ]);
+
+        fetch(API_TIENDA.TRAER_ORDEN_COMPRA, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            {
-                codigoOrdenCompra: 'OC2',
-                fechaSolicitud: '27/09/2024',
-                estado: 'Aceptada',
-                observaciones: 'Stock faltante',
-                fechaRecepcion: '',
-                despachada: false
-            },
-            {
-                codigoOrdenCompra: 'OC3',
-                fechaSolicitud: '27/09/2024',
-                estado: 'Aceptada',
-                observaciones: '',
-                fechaRecepcion: '',
-                despachada: true
-            },
-            {
-                codigoOrdenCompra: 'OC4',
-                fechaSolicitud: '20/09/2024',
-                estado: 'Recibida',
-                observaciones: '',
-                fechaRecepcion: '21/09/24',
-                despachada: true
-            },
-            {
-                codigoOrdenCompra: 'OC5',
-                fechaSolicitud: '18/09/2024',
-                estado: 'Rechazada',
-                observaciones: 'Producto Inexistente',
-                fechaRecepcion: '',
-                despachada: false
-            },
-        ]);
+            body: JSON.stringify({
+                idUsuario
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                setOrdenesCompra(response.ordenes);
+            })
     }
 
     const ItemOC = ({ orden }) => {
@@ -84,8 +101,8 @@ const OrdenCompra = () => {
                         </button>
                     ) : ''}
                 </td>
-                <td style={{textAlign: 'center'}}>
-                    <Link to={`/ordenesDeCompra/detalle/${orden.codigoOrdenCompra}}`} title='ver detalle'>
+                <td style={{ textAlign: 'center' }}>
+                    <Link to={`/ordenesDeCompra/detalle/${orden.idOrdenCompra}`} title='ver detalle'>
                         <FontAwesomeIcon icon={faFileLines} className={styles.icono_detalles} />
                     </Link>
                 </td>
@@ -117,7 +134,7 @@ const OrdenCompra = () => {
                             <th>Estado</th>
                             <th>Observaciones</th>
                             <th>Recepción</th>
-                            <th className={styles.columna_acciones} style={{textAlign: 'center'}}>Detalle</th>
+                            <th className={styles.columna_acciones} style={{ textAlign: 'center' }}>Detalle</th>
                         </tr>
                     </thead>
                     <tbody className={styles.tabla__cuerpo}>
