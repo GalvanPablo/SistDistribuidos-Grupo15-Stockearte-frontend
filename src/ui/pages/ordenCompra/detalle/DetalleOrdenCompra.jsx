@@ -50,9 +50,9 @@ const DetalleOrdenCompra = () => {
         setFechaSolicitud('23/5/24');
         setFechaRecepcion('10/6/24');
         setProductos([
-            { nombre: 'Remera', talle: 'S', color: 'Amarillo', cantidad: 3 , estado: 'No existe'},
-            { nombre: 'Pantalon', talle: 'M', color: 'Azul', cantidad: 23 , estado: 'Stock insuficiente'},
-            { nombre: 'Remera', talle: 'S', color: 'Negro', cantidad: 3 , estado: 'Todo bien'},
+            { nombre: 'Remera', talle: 'S', color: 'Amarillo', cantidad: 3, estado: 'No existe' },
+            { nombre: 'Pantalon', talle: 'M', color: 'Azul', cantidad: 23, estado: 'Stock insuficiente' },
+            { nombre: 'Remera', talle: 'S', color: 'Negro', cantidad: 3, estado: 'Todo bien' },
         ]);
     }, []);
 
@@ -68,92 +68,93 @@ const DetalleOrdenCompra = () => {
         }
         console.log(ordenCompra);
     };*/
-   
+
     //Mapeo de estados a iconos
     const getIconForState = (estado) => {
-       switch(estado){
+        switch (estado) {
             case 'No existe':
-            return <FontAwesomeIcon icon={faRectangleTimes} className={styles.tabla__iconoRojo}/>
+                return <FontAwesomeIcon icon={faRectangleTimes} className={styles.tabla__iconoRojo} />
             case 'Stock insuficiente':
-            return <FontAwesomeIcon icon={faExclamationTriangle} className={styles.tabla__iconoAmarillo}/>
+                return <FontAwesomeIcon icon={faExclamationTriangle} className={styles.tabla__iconoAmarillo} />
             case 'Todo bien':
-            return <FontAwesomeIcon icon={faCheckCircle} className={styles.tabla__iconoVerde}/>
+                return <FontAwesomeIcon icon={faCheckCircle} className={styles.tabla__iconoVerde} />
             default:
-            return <FontAwesomeIcon icon={faSkull}/>
-       }
+                return <FontAwesomeIcon icon={faSkull} />
+        }
 
     }
 
     const Item = ({ producto }) => {
-        return(
-         <tr className={styles.tabla__fila}>
-          <td>{producto.nombre}</td>
-          <td>{producto.talle}</td>
-          <td>{producto.color}</td>
-          <td>{producto.cantidad}</td>
-          <td>{getIconForState(producto.estado)}</td>
-        </tr>
-        
-    )};
- 
+        return (
+            <tr className={styles.tabla__fila}>
+                <td>{producto.nombre}</td>
+                <td>{producto.talle}</td>
+                <td>{producto.color}</td>
+                <td>{producto.cantidad}</td>
+                <td>{getIconForState(producto.estado)}</td>
+            </tr>
+
+        )
+    };
+
 
     return (
-      <>
-        <h1>
-           <FontAwesomeIcon icon={faFileExport} />
+        <>
+            <h1>
+                <FontAwesomeIcon icon={faFileExport} />
                 <span>Detalle de Orden de Compra: </span>
                 <span>{idOrden}</span>
-        </h1>
+            </h1>
 
-       <div>
-            <div className={styles.listado}>
-               <div className={styles.toolbar}>
-                   <form action="">
-                     
-                     <div className={styles.info}>
-                      <h3>ID: {idOrden} / Estado: {estado} / Observaciones: {observaciones}</h3>
-                      <h3>Tienda: {tienda}</h3>
-                      <h3>Fecha Solicitud: {fechaSolicitud}</h3>
-                      <h3>Fecha Recepcion: {fechaRecepcion}</h3>
-                     </div>
+            <div>
+                <div className={styles.listado}>
+                    <div className={styles.toolbar}>
+                        <form action="">
 
-                   </form>
+                            <div className={styles.info}>
+                                <h3>ID: {idOrden} / Estado: {estado} / Observaciones: {observaciones}</h3>
+                                <h3>Tienda: {tienda}</h3>
+                                <h3>Fecha Solicitud: {fechaSolicitud}</h3>
+                                <h3>Fecha Recepcion: {fechaRecepcion}</h3>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div className={styles.toolbar}>
+                    <table className={styles.tabla}>
+                        <thead className={styles.tabla_encabezado}>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Talle</th>
+                                <th>Color</th>
+                                <th>Cantidad</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody className={styles.tabla__cuerpo}>
+                            {productos.map((producto, index) => (
+                                <Item
+                                    key={index}
+                                    producto={producto} />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                {/* <button className={styles.nuevo} onClick={() => guardarCambios()}>Guardar Cambios</button>*/}
+                {/*Seccion de leyenda para iconos*/}
+                <div className={styles.toolbar}>
+                    <div className={styles.leyenda}>
+                        <h3>Descripción de los íconos de estado:</h3>
+                        <ul>
+                            <li><FontAwesomeIcon icon={faRectangleTimes} className={styles.tabla__iconoRojo} /> - No existe</li>
+                            <li><FontAwesomeIcon icon={faExclamationTriangle} className={styles.tabla__iconoAmarillo} /> - Stock insuficiente</li>
+                            <li><FontAwesomeIcon icon={faCheckCircle} className={styles.tabla__iconoVerde} /> - Todo bien</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-                <div className={styles.toolbar}>
-                   <table className={styles.tabla}>
-                      <thead className={styles.tabla_encabezado}>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Talle</th>
-                            <th>Color</th>
-                            <th>Cantidad</th>
-                            <th>Estado</th>
-                        </tr>
-                      </thead>
-                      <tbody className={styles.tabla__cuerpo}>
-                         {productos.map((producto, index) => (
-                            <Item 
-                              key={index} 
-                              producto={producto} />
-                         ))}
-                      </tbody>
-                   </table>
-                </div>
-               {/* <button className={styles.nuevo} onClick={() => guardarCambios()}>Guardar Cambios</button>*/}
-               {/*Seccion de leyenda para iconos*/}
-               <div className={styles.toolbar}>
-                 <div className={styles.leyenda}>
-                    <h3>Descripción de los íconos de estado:</h3>
-                      <ul>
-                        <li><FontAwesomeIcon icon={faRectangleTimes} className={styles.tabla__iconoRojo}/> - No existe</li>
-                        <li><FontAwesomeIcon icon={faExclamationTriangle} className={styles.tabla__iconoAmarillo}/> - Stock insuficiente</li>
-                        <li><FontAwesomeIcon icon={faCheckCircle} className={styles.tabla__iconoVerde}/> - Todo bien</li>
-                      </ul>
-                  </div>   
-               </div>
-        </div>
-      </>    
+        </>
     )
 }
 
