@@ -78,7 +78,7 @@ const OrdenCompra = () => {
         })
             .then(response => response.json())
             .then(response => {
-                setOrdenesCompra(response.ordenes);
+                setOrdenesCompra(response.ordenes?.sort((a, b) => b.idOrdenCompra - a.idOrdenCompra));
             })
     }
 
@@ -94,7 +94,7 @@ const OrdenCompra = () => {
                     ) : orden.estado === 'Aceptada' && orden.despachada ? (
                         <button className={styles.bntRecibir}
                             onClick={() => {
-                                alert(`Recibiendo la Orden: ${orden.codigoOrdenCompra}`)
+                                alert(`Recibiendo la Orden: ${orden.idOrdenCompra}`)
                             }}
                         >
                             Recibir

@@ -171,7 +171,7 @@ const NuevaOrdenCompra = () => {
                     <FontAwesomeIcon icon={faFileLines} />
                     <span>Orden de Compra</span>
                 </h1>
-                {/* <h2>Tienda: dasdasd</h2> */}
+                {finalizado && <Navigate to={"/ordenesDeCompra"} />}
             </div>
             <div className={styles.detalle_ordenCompra}>
                 <div className={styles.orden_interactuar}>
