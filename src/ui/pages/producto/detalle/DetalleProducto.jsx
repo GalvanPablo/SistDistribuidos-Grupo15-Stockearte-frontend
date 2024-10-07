@@ -73,9 +73,8 @@ const DetalleProducto = () => {
 
     const actualizarStock_onClick = (e) => {
         e.preventDefault();
-
         const modificacion = {
-            codigoProducto, //! HAY QUE REEMPLZARLO POR idProducto tanto aca como en el back
+            idProducto,
             codigoTienda,
             cantidad: parseInt(stock)
         }
