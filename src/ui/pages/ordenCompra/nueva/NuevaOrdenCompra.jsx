@@ -136,7 +136,7 @@ const NuevaOrdenCompra = () => {
                         min={1}
                         step={1}
                         defaultValue={producto.cantidad}
-                        onChange={(e) => actualizarCantidad(producto.codigo, e.target.value)}
+                        onChange={(e) => actualizarCantidad(producto.idProducto, e.target.value)}
                     />
                 </td>
                 <td style={{ textAlign: 'center' }}>
