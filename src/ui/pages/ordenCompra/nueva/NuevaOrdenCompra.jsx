@@ -48,27 +48,27 @@ const NuevaOrdenCompra = () => {
             });
     }
 
-    const asignarProducto = (codigo) => {
-        const productoAsignado = productos.find((producto) => producto.codigo === codigo);
+    const asignarProducto = (idProducto) => {
+        const productoAsignado = productos.find((producto) => producto.idProducto === idProducto);
         if (productoAsignado) {
             const nuevoProducto = { ...productoAsignado, cantidad: 1 };
             setProductosSeleccionados([...productosSeleccionados, nuevoProducto]);
-            setProductos(productos.filter((producto) => producto.codigo !== codigo));
+            setProductos(productos.filter((producto) => producto.idProducto !== idProducto));
         }
     };
 
-    const desasignarProducto = (codigo) => {
-        const productoDesasignado = productosSeleccionados.find((producto) => producto.codigo === codigo);
+    const desasignarProducto = (idProducto) => {
+        const productoDesasignado = productosSeleccionados.find((producto) => producto.idProducto === idProducto);
         if (productoDesasignado) {
             setProductos([...productos, productoDesasignado]);
-            setProductosSeleccionados(productosSeleccionados.filter((producto) => producto.codigo !== codigo));
+            setProductosSeleccionados(productosSeleccionados.filter((producto) => producto.idProducto !== idProducto));
         }
     };
 
-    const actualizarCantidad = (codigo, cantidad) => {
+    const actualizarCantidad = (idProducto, cantidad) => {
         setProductosSeleccionados(
             productosSeleccionados.map((producto) =>
-                producto.codigo === codigo ? { ...producto, cantidad: parseInt(cantidad) } : producto
+                producto.idProducto === idProducto ? { ...producto, cantidad: parseInt(cantidad) } : producto
             )
         );
     };
@@ -77,7 +77,7 @@ const NuevaOrdenCompra = () => {
         const orden = {
             idUsuario,
             items: productosSeleccionados.map((producto) => ({
-                codigoProducto: producto.codigo,
+                idProducto: producto.idProducto,
                 cantidad: producto.cantidad,
             })),
         };
@@ -85,7 +85,6 @@ const NuevaOrdenCompra = () => {
         fetch(API_TIENDA.AGREGAR_ORDEN_COMPRA, {
             method: 'POST',
             headers: {
-                // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(orden),
@@ -141,7 +140,7 @@ const NuevaOrdenCompra = () => {
                     />
                 </td>
                 <td style={{ textAlign: 'center' }}>
-                    <button className={styles.btnEliminar} onClick={() => desasignarProducto(producto.codigo)}>
+                    <button className={styles.btnEliminar} onClick={() => desasignarProducto(producto.idProducto)}>
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
                 </td>
@@ -157,7 +156,7 @@ const NuevaOrdenCompra = () => {
                 <td>{producto.talle}</td>
                 <td>{producto.color}</td>
                 <td style={{ textAlign: 'center' }}>
-                    <button className={styles.btnAsignarProducto} onClick={() => asignarProducto(producto.codigo)}>
+                    <button className={styles.btnAsignarProducto} onClick={() => asignarProducto(producto.idProducto)}>
                         <FontAwesomeIcon icon={faSquarePlus} />
                     </button>
                 </td>
