@@ -40,7 +40,6 @@ const OrdenCompra = () => {
     }
 
     const recibirPedido = (idOrdenCompra) => {
-        alert(idOrdenCompra);
         fetch(API_TIENDA.RECIBIR_PEDIDO, {
             method: 'POST',
             headers: {
@@ -52,7 +51,12 @@ const OrdenCompra = () => {
         })
             .then(response => response.json())
             .then(response => {
-                getOrdenesCompra();
+                if(response.estado){
+                    alert('Pedido recibido');
+                    getOrdenesCompra();
+                } else {
+                    alert('Error al recibir el pedido');
+                }
             })
     }
 
