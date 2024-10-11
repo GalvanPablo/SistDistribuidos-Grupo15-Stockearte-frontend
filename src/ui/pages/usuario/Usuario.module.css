@@ -12,17 +12,30 @@
     border-bottom: none;
 }
 
-.toolbar .nuevo, .toolbar button {
+.toolbar .nuevo,
+.toolbar button {
     background-color: var(--seconday_color);
     color: #fff;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+
+    transition: 0.1s all ease-in-out;
 }
 
-.toolbar .nuevo{
+.toolbar .btnNuevos {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.toolbar .nuevo {
     text-decoration: none;
+}
+
+.toolbar .nuevo:hover {
+    background-color: var(--primary-color);
 }
 
 .toolbar button:hover {
@@ -34,7 +47,8 @@
     align-items: center;
 }
 
-.toolbar__filtro__container input, .toolbar__filtro__container select {
+.toolbar__filtro__container input,
+.toolbar__filtro__container select {
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
@@ -76,7 +90,8 @@
     background-color: #f9f9f9;
 }
 
-.tabla th, .tabla td {
+.tabla th,
+.tabla td {
     padding: 8px;
     text-align: left;
 }
@@ -91,4 +106,58 @@
 
 .icono_detalles:hover {
     color: var(--seconday_color);
+}
+
+.tabla__modal {
+    max-height: 400px;
+    overflow-y: auto;
+    display: block;
+}
+
+.import__container {
+    width: 750px;
+}
+
+.importar__buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: end;
+    align-items: center;
+}
+
+input[type="file"]::file-selector-button {
+    margin: 10px 0;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--seconday_color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: var(--white-color);
+    border: 1px solid #3e8e41;
+    color: #3e8e41;
+}
+
+.btnImportarUsuarios, .btnCancelarImportarUsuarios {
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    transition: 0.1s all ease-in-out;
+}
+
+.btnImportarUsuarios:hover, .btnCancelarImportarUsuarios:hover {
+    background-color: var(--white-color);
+}
+
+.btnImportarUsuarios:hover {
+    color: #3e8e41;
+    border: 1px solid #3e8e41;
+}
+
+.btnCancelarImportarUsuarios:hover {
+    color: red;
+    border: 1px solid red;
 }
