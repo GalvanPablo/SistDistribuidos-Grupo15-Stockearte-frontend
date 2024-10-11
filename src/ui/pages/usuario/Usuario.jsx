@@ -146,7 +146,7 @@ const Usuario = () => {
             </div>
             <ModalGeneric isOpen={modalOpen} onClose={onCloseModal}>
                 <div className={styles.import__container}>
-                    <h2>Imporatar Usuarios</h2>
+                    <h2>Importar Usuarios</h2>
                     <input type="file" id="fileInput" accept=".csv" onChange={inputFile_onChange} />
                     <table className={`${styles.tabla} ${styles.tabla__modal}`}>
                         <thead className={styles.tabla__encabezado}>
