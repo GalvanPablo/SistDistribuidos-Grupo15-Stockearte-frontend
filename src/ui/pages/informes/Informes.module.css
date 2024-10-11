@@ -1,0 +1,130 @@
+.listado {
+    margin-top: 20px;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-bottom: none;
+}
+
+.btnGestionFiltros button {
+    background-color: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: black;
+}
+
+.btnGestionFiltros button:hover {
+    color: #666;
+}
+
+.toolbar__filtro__container {
+    display: flex;
+    align-items: center;
+}
+
+.toolbar__filtro__container input,
+.toolbar__filtro__container select {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+.btnGestionFiltros {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+
+
+
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.tabla__encabezado {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.tabla__cuerpo {
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla__fila {
+    border-top: 1px solid #ddd;
+}
+
+.tabla__fila:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla th, .tabla td {
+    padding: 8px;
+    text-align: left;
+}
+
+.tabla th {
+    font-weight: bold;
+}
+
+
+
+
+.filtrosDisponibles_container{
+    margin-top: 10px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.itemFiltroDisponible {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itemFiltroDisponible div {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.itemFiltroDisponible button {
+    color: black;
+}
+
+.itemFiltroDisponible button:hover {
+    background-color: #ccc;
+}
+
+.btnGuardarCancelar {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.btnGuardarCancelar button{
+    width: 150px;
+    color: black;
+}
+
+.btnGuardarCancelar button:hover {
+    background-color: #ccc;
+}
