@@ -22,3 +22,5 @@ export { default as DetalleOrdenCompra } from './ordenCompra/detalle/DetalleOrde
 export { default as Catalago } from './catalogo/Catalogo'
 export { default as DetalleCatalago } from './catalogo/detalle/DetalleCatalogo'
 
+export { default as Informes } from './informes/Informes'
+
