@@ -144,7 +144,7 @@ const Usuario = () => {
                     </tbody>
                 </table>
             </div>
-            <ModalGeneric isOpen={modalOpen} onClose={onCloseModal}>
+            <ModalGeneric isOpen={modalOpen} onClose={onCloseModal} showCloseButton={false}>
                 <div className={styles.import__container}>
                     <h2>Importar Usuarios</h2>
                     <input type="file" id="fileInput" accept=".csv" onChange={inputFile_onChange} />
