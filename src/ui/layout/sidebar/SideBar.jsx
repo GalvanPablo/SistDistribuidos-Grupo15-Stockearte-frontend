@@ -90,6 +90,17 @@ const SideBar = () => {
                             <FontAwesomeIcon icon={faTruckFast} />
                             <span>Ordenes De Compra</span>
                         </NavLink>
+                        <NavLink
+                            to="/catalogo"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? `${styles.navListItemLink} ${styles.active}`
+                                    : styles.navListItemLink
+                            }
+                        >
+                            <FontAwesomeIcon icon={faTruckFast} />
+                            <span>Catalogos</span>
+                        </NavLink>
                     </li>
                 )}
             </ul>

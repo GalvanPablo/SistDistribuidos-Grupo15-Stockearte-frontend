@@ -14,7 +14,8 @@ import {
     Producto, NuevoProducto, DetalleProducto,
     Usuario, NuevoUsuario, DetalleUsuario,
     OrdenCompra, NuevaOrdenCompra, DetalleOrdenCompra,
-    Novedad
+    Novedad,
+    Catalago, DetalleCatalago
 } from './ui/pages';
 
 import { API_AUTH } from './data/api';
@@ -55,6 +56,9 @@ function App() {
                                         <Route path='/ordenesDeCompra' element={<OrdenCompra />} />
                                         <Route path='/ordenesDeCompra/nueva' element={<NuevaOrdenCompra />} />
                                         <Route path='/ordenesDeCompra/detalle/:id' element={<DetalleOrdenCompra />} />
+
+                                        <Route path='/catalogo' element={<Catalago />} />
+                                        <Route path='/catalogo/detalle/:id' element={<DetalleCatalago />} />
                                     </>
                                 )}
 

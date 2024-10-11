@@ -19,3 +19,6 @@ export { default as OrdenCompra } from './ordenCompra/OrdenCompra'
 export { default as NuevaOrdenCompra } from './ordenCompra/nueva/NuevaOrdenCompra'
 export { default as DetalleOrdenCompra } from './ordenCompra/detalle/DetalleOrdenCompra'
 
+export { default as Catalago } from './catalogo/Catalogo'
+export { default as DetalleCatalago } from './catalogo/detalle/DetalleCatalogo'
+
