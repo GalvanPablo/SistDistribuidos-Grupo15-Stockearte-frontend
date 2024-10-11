@@ -50,3 +50,11 @@ export const API_AUTH = {
     LOGIN: API_URL + 'Usuario/Login',
     ROLES: ['ROLE_TIENDA','ROLE_CASA_CENTRAL']
 }
+
+
+export const API_CATALOGO = {
+    NO_ASIGNADOS: API_URL + 'Catalogo/GetProductosNoAsociados',
+    ASIGNADOS: API_URL + 'Catalogo/GetProductosAsociados',
+    PRODUCTO_ASGINAR: API_URL + 'Catalogo/AsignarProducto',
+    PRODUCTO_DESASGINAR: API_URL + 'Catalogo/DesasignarProducto'
+}
