@@ -1,5 +1,7 @@
 const API_URL = 'https://localhost:7035/'
 
+const API_URL_2 = 'https://localhost:7035/'
+
 export const API_TIENDA = {
     ALTA: API_URL + 'Tienda/CrearTienda',
     LISTADO: API_URL + 'Tienda/TraerTiendas',
@@ -43,7 +45,9 @@ export const API_USUARIO = {
     //BAJA: API_URL + 'Usuario/EliminarUsuario',
 
     NO_ASIGNADOS: API_URL + 'Usuario/GetUsuariosNoAsignados',
-    ASIGNADOS: API_URL + 'Usuario/GetUsuariosAsignados'
+    ASIGNADOS: API_URL + 'Usuario/GetUsuariosAsignados',
+
+    IMPORTAR: API_URL_2 + 'Usuario/Importar'
 }
 
 export const API_AUTH = {
@@ -53,8 +57,8 @@ export const API_AUTH = {
 
 
 export const API_CATALOGO = {
-    NO_ASIGNADOS: API_URL + 'Catalogo/GetProductosNoAsociados',
-    ASIGNADOS: API_URL + 'Catalogo/GetProductosAsociados',
-    PRODUCTO_ASGINAR: API_URL + 'Catalogo/AsignarProducto',
-    PRODUCTO_DESASGINAR: API_URL + 'Catalogo/DesasignarProducto'
+    NO_ASIGNADOS: API_URL_2 + 'Catalogo/GetProductosNoAsociados',
+    ASIGNADOS: API_URL_2 + 'Catalogo/GetProductosAsociados',
+    PRODUCTO_ASGINAR: API_URL_2 + 'Catalogo/AsignarProducto',
+    PRODUCTO_DESASGINAR: API_URL_2 + 'Catalogo/DesasignarProducto'
 }

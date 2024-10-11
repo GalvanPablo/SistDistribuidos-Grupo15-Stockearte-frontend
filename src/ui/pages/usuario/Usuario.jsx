@@ -99,6 +99,18 @@ const Usuario = () => {
 
     const importar_onClick = () => {
         alert('importando');
+        // fetch(API_USUARIO.IMPORTAR, {
+        //     method: 'POST',
+        //     headers: {
+        //         // 'Authorization': `Bearer ${token}`,
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(usuariosImportar),
+        // })
+        //     .then(response => response.json())
+        //     .then(response => {
+        //         alert('Importados!!');
+        //     })
     }
 
     return (
