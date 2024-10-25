@@ -142,13 +142,17 @@ input[type="file"]::file-selector-button:hover {
     color: #3e8e41;
 }
 
-.btnImportarUsuarios, .btnCancelarImportarUsuarios {
+.btnImportarUsuarios,
+.btnCancelarImportarUsuarios,
+.btnAceptar {
     border: 1px solid var(--primary-color);
     background-color: var(--primary-color);
     transition: 0.1s all ease-in-out;
 }
 
-.btnImportarUsuarios:hover, .btnCancelarImportarUsuarios:hover {
+.btnImportarUsuarios:hover,
+.btnCancelarImportarUsuarios:hover,
+.btnAceptar:hover {
     background-color: var(--white-color);
 }
 
@@ -160,4 +164,32 @@ input[type="file"]::file-selector-button:hover {
 .btnCancelarImportarUsuarios:hover {
     color: red;
     border: 1px solid red;
+}
+
+.errores__container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.errores__container ul {
+    margin-top: 10px;
+}
+
+.errores__container li {
+    padding: 5px 0;
+}
+
+.errores__container .btnContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.errores__container .btnAceptar:hover {
+    color: blue;
+    border: 1px solid blue;
 }

@@ -1,6 +1,6 @@
 const API_URL = 'https://localhost:7035/'
 
-const API_URL_2 = 'https://localhost:7035/'
+const API_URL_2 = 'http://localhost:8002/'
 
 export const API_TIENDA = {
     ALTA: API_URL + 'Tienda/CrearTienda',
@@ -47,7 +47,7 @@ export const API_USUARIO = {
     NO_ASIGNADOS: API_URL + 'Usuario/GetUsuariosNoAsignados',
     ASIGNADOS: API_URL + 'Usuario/GetUsuariosAsignados',
 
-    IMPORTAR: API_URL_2 + 'Usuario/Importar'
+    IMPORTAR: API_URL_2 + 'api/usuarios/carga-masiva'
 }
 
 export const API_AUTH = {

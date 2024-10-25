@@ -40,7 +40,6 @@ const Usuario = () => {
         fetch(API_USUARIO.LISTADO, {
             method: 'POST',
             headers: {
-                // 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(filtros),
@@ -73,8 +72,8 @@ const Usuario = () => {
                 const text = e.target.result;  // Lee el contenido del archivo como texto
                 const lines = text.split('\n');  // Divide el contenido en líneas
 
-                // Ignora la primera línea del archivo
-                const dataLines = lines.slice(1);
+                // Ignora la primera línea y las completamente vacias del archivo
+                const dataLines = lines.slice(1).filter(line => line.trim() !== '');
 
                 // Convertimos cada línea a un objeto
                 const data = dataLines.map(line => {
@@ -97,20 +96,30 @@ const Usuario = () => {
         }
     }
 
+    const [erroresImportacion, setErroresImportacion] = React.useState([]);
     const importar_onClick = () => {
-        alert('importando');
-        // fetch(API_USUARIO.IMPORTAR, {
-        //     method: 'POST',
-        //     headers: {
-        //         // 'Authorization': `Bearer ${token}`,
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(usuariosImportar),
-        // })
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         alert('Importados!!');
-        //     })
+        fetch(API_USUARIO.IMPORTAR, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ usuario: usuariosImportar }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response.resultado === 'Mal') {
+                    setErroresImportacion(response.errores);
+
+                } else {
+                    finalizarImportacion();
+                }
+            })
+    }
+
+    const finalizarImportacion = () => {
+        obtenerListado();
+        setErroresImportacion([]);
+        onCloseModal();
     }
 
     return (
@@ -157,36 +166,52 @@ const Usuario = () => {
                 </table>
             </div>
             <ModalGeneric isOpen={modalOpen} onClose={onCloseModal} showCloseButton={false}>
-                <div className={styles.import__container}>
-                    <h2>Importar Usuarios</h2>
-                    <input type="file" id="fileInput" accept=".csv" onChange={inputFile_onChange} />
-                    <table className={`${styles.tabla} ${styles.tabla__modal}`}>
-                        <thead className={styles.tabla__encabezado}>
-                            <tr>
-                                <th>Email</th>
-                                <th>Clave</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Tienda</th>
-                            </tr>
-                        </thead>
-                        <tbody className={styles.tabla__cuerpo}>
-                            {usuariosImportar.map((usuario, index) => (
-                                <tr key={index}>
-                                    <td>{usuario.email}</td>
-                                    <td>{usuario.clave}</td>
-                                    <td>{usuario.nombre}</td>
-                                    <td>{usuario.apellido}</td>
-                                    <td>{usuario.codigoTienda}</td>
-                                </tr>
+                {erroresImportacion.length > 0 ? (
+                    <div className={styles.errores__container}>
+                        <h2>Errores en la importación</h2>
+                        <ul>
+                            {erroresImportacion.map((error, index) => (
+                                <li clave={index}>
+                                    Línea {error.linea}: {error.mensajeError}
+                                </li>
                             ))}
-                        </tbody>
-                    </table>
-                    <div className={styles.importar__buttons}>
-                        <button className={styles.btnImportarUsuarios} onClick={importar_onClick} disabled={!(usuariosImportar.length > 0)}>Importar</button>
-                        <button className={styles.btnCancelarImportarUsuarios} onClick={onCloseModal}>Cancelar</button>
+                        </ul>
+                        <div className={styles.btnContainer}>
+                            <button className={styles.btnAceptar} onClick={finalizarImportacion}>Aceptar</button>
+                        </div>
                     </div>
-                </div>
+                ) : (
+                    <div className={styles.import__container}>
+                        <h2>Importar Usuarios</h2>
+                        <input type="file" id="fileInput" accept=".csv" onChange={inputFile_onChange} />
+                        <table className={`${styles.tabla} ${styles.tabla__modal}`}>
+                            <thead className={styles.tabla__encabezado}>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Clave</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Tienda</th>
+                                </tr>
+                            </thead>
+                            <tbody className={styles.tabla__cuerpo}>
+                                {usuariosImportar.map((usuario, index) => (
+                                    <tr key={index}>
+                                        <td>{usuario.email}</td>
+                                        <td>{usuario.clave}</td>
+                                        <td>{usuario.nombre}</td>
+                                        <td>{usuario.apellido}</td>
+                                        <td>{usuario.codigoTienda}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className={styles.importar__buttons}>
+                            <button className={styles.btnImportarUsuarios} onClick={importar_onClick} disabled={!(usuariosImportar.length > 0)}>Importar</button>
+                            <button className={styles.btnCancelarImportarUsuarios} onClick={onCloseModal}>Cancelar</button>
+                        </div>
+                    </div>
+                )}
             </ModalGeneric>
         </>
     )
