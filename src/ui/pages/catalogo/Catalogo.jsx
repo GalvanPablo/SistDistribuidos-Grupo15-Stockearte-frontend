@@ -7,6 +7,8 @@ import styles from './Catalogo.module.css'
 import { Link, Navigate } from 'react-router-dom'
 import { ModalGeneric, TextInput } from '../../components'
 import { useSelector } from 'react-redux'
+import { API_CATALOGO } from '../../../data/api'
+
 const Catalogo = () => {
     const idUsuario = useSelector(state => state.auth.idUsuario);
 
@@ -15,27 +17,67 @@ const Catalogo = () => {
     const [nombreCatalogo, setNombreCatalogo] = useState('');
 
     useEffect(() => {
-        setCatalogos([
-            { idCatalogo: 1, nombre: 'Remeras' },
-            { idCatalogo: 2, nombre: 'Camperas' },
-            { idCatalogo: 3, nombre: 'Pantalones' },
-            { idCatalogo: 4, nombre: 'Buzos' },
-        ])
+        obtenerCatalogos();
     }, [])
+
+    const obtenerCatalogos = () => {
+        fetch(API_CATALOGO.LISTADO, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idUsuario }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                setCatalogos(response.catalogo)
+            })
+    }
 
     const crearCatalogo = () => {
         alert(`Creando catalogo: ${nombreCatalogo}`);
         const catalogo = {
-            idUsuario, // Para que sepa de que tienda es
-            nombre: nombreCatalogo
+            titulo: nombreCatalogo,
+            idUsuario // Para que sepa de que tienda es
         }
 
-        //TODO HACER EL FECTCH Y QUE DEVUELVA EL idCatalogo
-        setCatalogoCreado(2);
+        fetch(API_CATALOGO.ALTA, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(catalogo),
+        })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                if (!isNaN(response.idCatalogo)) {
+                    setCatalogoCreado(response.idCatalogo);
+                } else {
+                    alert(response.mensaje);
+                }
+            })
     }
 
     const descargarPdf = (idCatalogo) => {
         alert(`PDF idCatalogo: ${idCatalogo}`)
+        fetch(API_CATALOGO.EXPORTAR.PDF, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idCatalogo
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                const archivoPdf = response.url; // URL o contenido del archivo
+                const enlace = document.createElement('a');
+                enlace.href = archivoPdf;
+                enlace.download = 'catalogo_25-10-2024.pdf';
+                enlace.click();
+            })
     }
 
     const eliminarCatalogo = (idCatalogo) => {
@@ -51,7 +93,7 @@ const Catalogo = () => {
     const ItemCatalogo = ({ catalogo }) => {
         return (
             <tr className={styles.tabla__fila}>
-                <td>{catalogo.nombre}</td>
+                <td>{catalogo.titulo}</td>
                 <td className={styles.celdaAcciones}>
                     <button className={styles.btnAccion} title='Descargar pdf' onClick={() => { descargarPdf(catalogo.idCatalogo) }}>
                         <FontAwesomeIcon icon={faFilePdf} />

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { ModalGeneric } from '../../../components'
+import { ModalGeneric, TextInput } from '../../../components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faLinkSlash } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
@@ -12,75 +12,112 @@ const DetalleCatalogo = () => {
     const detallesVisualizacion = useParams();
     const idCatalogo = detallesVisualizacion.id;
 
-    const [productosAsociados, setProductosAsociados] = React.useState([]);
-    const [productosNoAsociados, setProductosNoAsociados] = React.useState([]);
+    const [productosAsociados, setProductosAsociados] = useState([]);
+    const [productosNoAsociados, setProductosNoAsociados] = useState([]);
 
+    const [titulo, setTitulo] = useState('');
+
+    useEffect(() => {
+        fetch(API_CATALOGO.DETALLE, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idCatalogo
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                setTitulo(response.titulo);
+            })
+        actualizarProductos();
+    }, []);
     const actualizarProductos = () => {
-        // // Actualizar asignación
-        // fetch(API_CATALOGO.ASIGNADOS, {
-        //     method: 'POST', headers: {
-        //         // 'Authorization': `Bearer ${token}`,
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         idCatalogo
-        //     }),
-        // })
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         setProductosAsociados(response.productos);
-        //     })
+        // Actualizar asignación
+        fetch(API_CATALOGO.ASIGNADOS, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idCatalogo
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (Array.isArray(response.producto)) {
+                    setProductosAsociados(response.producto);
+                } else {
+                    setProductosAsociados([]);
+                }
+            })
 
-        // // Actualizar no asignados
-        // fetch(API_CATALOGO.NO_ASIGNADOS, {
-        //     method: 'POST', headers: {
-        //         // 'Authorization': `Bearer ${token}`,
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         idCatalogo
-        //     }),
-        // })
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         setProductosNoAsociados(response.productos);
-        //     })
+        // Actualizar no asignados
+        fetch(API_CATALOGO.NO_ASIGNADOS, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idCatalogo
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (Array.isArray(response.producto)) {
+                    setProductosNoAsociados(response.producto);
+                } else {
+                    setProductosNoAsociados([]);
+                }
+            })
     };
 
     const asignarProducto_onClick = (idProducto) => {
-        // fetch(API_CATALOGO.PRODUCTO_ASGINAR, {
-        //     method: 'POST', headers: {
-        //         // 'Authorization': `Bearer ${token}`,
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         idTienda,
-        //         idProducto
-        //     }),
-        // })
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         actualizarProductos();
-        //     })
+        fetch(API_CATALOGO.PRODUCTO_ASGINAR, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idCatalogo,
+                idProducto
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                actualizarProductos();
+            })
 
     };
     const desasignarProducto_onClick = (idProducto) => {
-        // fetch(API_CATALOGO.PRODUCTO_DESASGINAR, {
-        //     method: 'POST', headers: {
-        //         // 'Authorization': `Bearer ${token}`,
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         idTienda,
-        //         idProducto
-        //     }),
-        // })
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         actualizarProductos();
-        //     })
+        fetch(API_CATALOGO.PRODUCTO_DESASGINAR, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idCatalogo,
+                idProducto
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                actualizarProductos();
+            })
 
     };
+
+    const guardarTitulo_onClick = () => {
+        fetch(API_CATALOGO.EDITAR, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idCatalogo,
+                titulo
+            }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                alert(response.mensaje);
+            })
+    }
 
     const [modalOpen, setModalOpen] = useState(false);
     const onCloseModal = () => {
@@ -106,6 +143,16 @@ const DetalleCatalogo = () => {
     return (
         <>
             <h1>Detalles del catálogo</h1>
+            <form className={styles.form}>
+                <TextInput
+                    label={"Titulo"}
+                    value={titulo}
+                    onChange={(value) => setTitulo(value)}
+                />
+                <button type="button" className={styles.btn_guardar} onClick={guardarTitulo_onClick}>
+                    Guardar
+                </button>
+            </form>
             <div className={styles.listview}>
                 <div className={styles.listview__encabezado}>
                     <span>Productos asignados</span>

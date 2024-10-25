@@ -57,8 +57,15 @@ export const API_AUTH = {
 
 
 export const API_CATALOGO = {
-    NO_ASIGNADOS: API_URL_2 + 'Catalogo/GetProductosNoAsociados',
-    ASIGNADOS: API_URL_2 + 'Catalogo/GetProductosAsociados',
-    PRODUCTO_ASGINAR: API_URL_2 + 'Catalogo/AsignarProducto',
-    PRODUCTO_DESASGINAR: API_URL_2 + 'Catalogo/DesasignarProducto'
+    ALTA: API_URL_2 + 'api/catalogos/crear',
+    LISTADO: API_URL_2 + 'api/catalogos/listar',
+    EXPORTAR: {
+        PDF: API_URL_2 + 'api/catalogos/exportar/pdf'
+    },
+    DETALLE: API_URL_2 + 'api/catalogos/detalle',
+    EDITAR: API_URL_2 + 'api/catalogos/editar',
+    ASIGNADOS: API_URL_2 + 'api/catalogos/productos/asignados',
+    NO_ASIGNADOS: API_URL_2 + 'api/catalogos/productos/no-asignados',
+    PRODUCTO_ASGINAR: API_URL_2 + 'api/catalogos/asignar',
+    PRODUCTO_DESASGINAR: API_URL_2 + 'api/catalogos/desasignar'
 }

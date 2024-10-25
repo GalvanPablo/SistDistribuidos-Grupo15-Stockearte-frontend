@@ -1,4 +1,5 @@
 .listview {
+    margin-top: 20px;
     width: 100%;
 }
 
@@ -17,6 +18,7 @@
 
 .listview__encabezado button {
     padding: 5px;
+    background-color: var(--green-color);
 }
 
 .listview table {
@@ -50,4 +52,27 @@
 
 .listview th {
     font-weight: bold;
+}
+
+.form {
+    margin-top: 10px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+
+    gap: 10px;
+}
+
+.btn_guardar {
+    margin-left: 10px;
+    padding: 6px;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 1rem;
+
+    border: 1px solid var(--primary-color);
+    background-color: var(--green-color);
+
+    cursor: pointer;
 }
