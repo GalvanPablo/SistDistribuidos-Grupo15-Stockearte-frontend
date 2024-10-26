@@ -50,7 +50,6 @@ const Catalogo = () => {
         })
             .then(response => response.json())
             .then(response => {
-                console.log(response);
                 if (!isNaN(response.idCatalogo)) {
                     setCatalogoCreado(response.idCatalogo);
                 } else {
@@ -60,7 +59,6 @@ const Catalogo = () => {
     }
 
     const descargarPdf = (idCatalogo) => {
-        alert(`PDF idCatalogo: ${idCatalogo}`)
         fetch(API_CATALOGO.EXPORTAR.PDF, {
             method: 'POST', headers: {
                 'Content-Type': 'application/json'
@@ -70,13 +68,27 @@ const Catalogo = () => {
             }),
         })
             .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                const archivoPdf = response.url; // URL o contenido del archivo
-                const enlace = document.createElement('a');
-                enlace.href = archivoPdf;
-                enlace.download = 'catalogo_25-10-2024.pdf';
-                enlace.click();
+            .then(data => {
+                if (data.archivoPdf) {
+                    const archivoPdfBase64 = data.archivoPdf;
+                    const byteCharacters = atob(archivoPdfBase64);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+                    // Crea un URL temporal para el Blob
+                    const blobUrl = URL.createObjectURL(blob);
+
+                    // Abre una nueva ventana con el PDF
+                    window.open(blobUrl, '_blank');
+                } else if(data.mensaje) {
+                    alert(data.mensaje);
+                } else {
+                    alert('Error al exportar el PDF');
+                }
             })
     }
 
