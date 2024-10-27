@@ -93,7 +93,17 @@ const Catalogo = () => {
     }
 
     const eliminarCatalogo = (idCatalogo) => {
-        alert(`Eliminar idCatalogo: ${idCatalogo}`)
+        fetch(API_CATALOGO.ELIMINAR, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idCatalogo }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                obtenerCatalogos();
+            })
     }
 
     const [modalOpen, setModalOpen] = useState(false);

@@ -58,6 +58,7 @@ export const API_AUTH = {
 
 export const API_CATALOGO = {
     ALTA: API_URL_2 + 'api/catalogos/crear',
+    ELIMINAR: API_URL_2 + 'api/catalogos/eliminar',
     LISTADO: API_URL_2 + 'api/catalogos/listar',
     EXPORTAR: {
         PDF: API_URL_2 + 'api/catalogos/exportar/pdf'
