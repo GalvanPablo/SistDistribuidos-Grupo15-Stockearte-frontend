@@ -85,8 +85,8 @@ const Informes = () => {
         const filt = filtrosDisponibles.find((obj) => obj.idFiltro === idFiltro);
 
         input_idProducto.current.value = filt.idProducto;
-        input_fechaDesde.current.value = new Date(filt.fechaDesde).toISOString().split('T')[0];
-        input_fechaHasta.current.value = new Date(filt.fechaHasta).toISOString().split('T')[0];
+        input_fechaDesde.current.value = filt.fechaDesde ? new Date(filt.fechaDesde).toISOString().split('T')[0] : '';
+        input_fechaHasta.current.value = filt.fechaHasta ? new Date(filt.fechaHasta).toISOString().split('T')[0] : '';
         input_estado.current.value = filt.estado;
         input_codigoTienda.current.value = filt.codigoTienda;
 
@@ -101,8 +101,11 @@ const Informes = () => {
         });
 
         onCloseModal();
-        generarInforme();
     }
+
+    useEffect(()=>{
+        generarInforme();
+    },[filtroActual]);
 
     const eliminarFiltro = (idFiltro) => {
         fetch(API_INFORMES.FILTRO_ELIMINAR, {
