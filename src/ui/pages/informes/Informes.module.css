@@ -42,7 +42,18 @@
     gap: 10px;
 }
 
+.btnBuscar {
+    background-color: var(--seconday_color);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
+.btnBuscar:hover {
+    background-color: #3e8e41;
+}
 
 
 
@@ -71,7 +82,8 @@
     background-color: #f9f9f9;
 }
 
-.tabla th, .tabla td {
+.tabla th,
+.tabla td {
     padding: 8px;
     text-align: left;
 }
@@ -83,7 +95,7 @@
 
 
 
-.filtrosDisponibles_container{
+.filtrosDisponibles_container {
     margin-top: 10px;
     width: 350px;
     display: flex;
@@ -120,7 +132,7 @@
     gap: 10px;
 }
 
-.btnGuardarCancelar button{
+.btnGuardarCancelar button {
     width: 150px;
     color: black;
 }

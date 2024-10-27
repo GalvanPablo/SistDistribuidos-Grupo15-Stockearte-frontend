@@ -4,8 +4,8 @@ import styles from './Informes.module.css'
 import { useSelector } from 'react-redux';
 import { ModalGeneric, TextInput } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faFilterCircleXmark, faFloppyDisk, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { API_AUTH } from '../../../data/api';
+import { faFilter, faFilterCircleXmark, faFloppyDisk, faXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { API_AUTH, API_INFORMES } from '../../../data/api';
 
 const MOSTRAR = {
     FILTROS: 0,
@@ -18,19 +18,18 @@ const Informes = () => {
 
     const [informes, setInformes] = useState([]);
 
-    const filtrosLimpios = { idFiltro: 0, codigoProducto: '', fechaDesde: '', fechaHasta: '', estado: '', codigoTienda: '' };
+    const filtrosLimpios = { idFiltro: 0, idProducto: '', fechaDesde: '', fechaHasta: '', estado: '', codigoTienda: '' };
     const [filtroActual, setFiltroActual] = useState(filtrosLimpios);
 
-    const [idFiltroSeleccionado, setIdFiltroSeleccionado] = useState(0);
     const [filtrosDisponibles, setFiltrosDisponibles] = useState([]);
 
     const [nombreFiltro, setNombreFiltro] = useState('');
     const [mostrarModal, setMostrarModal] = useState();
 
     //#region Manejo de Filtros
-    const input_codigoProducto = useRef(null);
-    const setCodigoProducto = (valor) => {
-        setFiltroActual({ ...filtroActual, codigoProducto: valor });
+    const input_idProducto = useRef(null);
+    const setIdProducto = (valor) => {
+        setFiltroActual({ ...filtroActual, idProducto: valor });
     };
     const input_fechaDesde = useRef(null);
     const setFechaDesde = (valor) => {
@@ -51,29 +50,29 @@ const Informes = () => {
     //#endregion
 
     const btnLimpiarFiltros_onClick = () => {
-        input_codigoProducto.current.value = '';
+        input_idProducto.current.value = '';
         input_fechaDesde.current.value = '';
         input_fechaHasta.current.value = '';
         input_estado.current.value = '';
         input_codigoTienda.current.value = '';
         setFiltroActual(filtrosLimpios);
-        setIdFiltroSeleccionado(0);
     }
-
-    useEffect(() => {
-        console.clear();
-        console.table(filtroActual); //TODO REVISAR COMO GESTIONAR LAS FECHAS PARA ENVIAR AL ENDPOINT
-    }, [filtroActual]);
 
     useEffect(() => {
         traerFiltrosDisponibles();
     }, []);
 
     const traerFiltrosDisponibles = () => {
-        setFiltrosDisponibles([
-            { idFiltro: 1, nombre: 'Remeras', codigoProducto: 'REM', fechaDesde: '2023-12-10', fechaHasta: '2024-10-11', estado: 'ACEPTADA', codigoTienda: 'ABCD1234' },
-            { idFiltro: 2, nombre: 'Jeans', codigoProducto: 'JEN', fechaDesde: '', fechaHasta: '', estado: 'RECHAZADA', codigoTienda: '' },
-        ])
+        fetch(API_INFORMES.FILTROS, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idUsuario }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                setFiltrosDisponibles(response.filtro);
+            })
     }
 
 
@@ -83,19 +82,18 @@ const Informes = () => {
     };
 
     const aplicarFiltro = (idFiltro) => {
-        setIdFiltroSeleccionado(idFiltro);
         const filt = filtrosDisponibles.find((obj) => obj.idFiltro === idFiltro);
 
-        input_codigoProducto.current.value = filt.codigoProducto;
-        input_fechaDesde.current.value = filt.fechaDesde;
-        input_fechaHasta.current.value = filt.fechaHasta;
+        input_idProducto.current.value = filt.idProducto;
+        input_fechaDesde.current.value = new Date(filt.fechaDesde).toISOString().split('T')[0];
+        input_fechaHasta.current.value = new Date(filt.fechaHasta).toISOString().split('T')[0];
         input_estado.current.value = filt.estado;
         input_codigoTienda.current.value = filt.codigoTienda;
 
         setFiltroActual({
             idFiltro: filt.idFiltro,
-            nombre: filt.nombre,
-            codigoProducto: filt.codigoProducto,
+            nombreFiltro: filt.nombreFiltro,
+            idProducto: filt.idProducto,
             fechaDesde: filt.fechaDesde,
             fechaHasta: filt.fechaHasta,
             estado: filt.estado,
@@ -103,11 +101,27 @@ const Informes = () => {
         });
 
         onCloseModal();
+        generarInforme();
     }
 
     const eliminarFiltro = (idFiltro) => {
-        alert(`Eliminando el filtro ${idFiltro}`);
+        fetch(API_INFORMES.FILTRO_ELIMINAR, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idFiltro }),
+        })
+            .then(response => response.json())
+            .then(response => {
+                traerFiltrosDisponibles();
+            })
     }
+
+    useEffect(() => {
+        if (filtrosDisponibles?.length === 0) {
+            onCloseModal();
+        }
+    }, [filtrosDisponibles]);
 
     const btnFiltros_onClick = () => {
         setMostrarModal(MOSTRAR.FILTROS);
@@ -116,27 +130,76 @@ const Informes = () => {
 
     const btnGuardarFiltro_onClick = () => {
         setMostrarModal(MOSTRAR.GUARDAR);
-        setNombreFiltro(filtroActual.nombre);
+        setNombreFiltro(filtroActual.nombreFiltro);
         setModalOpen(true);
     }
 
     const btnGuardar_onClick = () => {
         if (nombreFiltro && nombreFiltro.length !== 0) {
-            const filt = filtrosDisponibles.find((obj) => obj.nombre === nombreFiltro);
+            const filt = filtrosDisponibles.find((obj) => obj.nombreFiltro === nombreFiltro);
             if (filt) {
-                alert('Filtro existente');
+                const filtro = { idFiltro: filt.idFiltro, nombreFiltro, ...filtroActual };
+
+                fetch(API_INFORMES.FILTRO_EDITAR, {
+                    method: 'POST', headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(filtro),
+                })
+                    .then(response => response.json())
+                    .then(response => {
+                        traerFiltrosDisponibles();
+                        onCloseModal();
+                    })
+
             } else {
-                alert('Aun no existe el filtro');
+                const filtro = { idUsuario, nombreFiltro, ...filtroActual };
+                delete filtro.idFiltro;
+
+                fetch(API_INFORMES.FILTRO_CREAR, {
+                    method: 'POST', headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(filtro),
+                })
+                    .then(response => response.json())
+                    .then(response => {
+                        traerFiltrosDisponibles();
+                        onCloseModal();
+                    })
             }
         } else {
             alert('Debe de especificar un nombre de filtro')
         }
     }
 
+    useEffect(() => {
+        generarInforme();
+    }, [])
+
+    const generarInforme = () => {
+        const filtro = filtroActual;
+        delete filtro.idFiltro;
+        filtro.idProducto = isNaN(parseInt(filtro.idProducto)) ? null : parseInt(filtro.idProducto);
+        console.clear();
+        console.table(filtro);
+
+        fetch(API_INFORMES.INFORME, {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(filtro),
+        })
+            .then(response => response.json())
+            .then(response => {
+                setInformes(response.orden);
+            })
+    }
+
     const Item = ({ informe }) => {
         return (
             <tr>
-                <td>{informe.codigoProducto}</td>
+                <td>{informe.nombreProducto}</td>
                 <td>{informe.codigoTienda}</td>
                 <td>{informe.estado}</td>
                 <td>{informe.cantidad}</td>
@@ -147,7 +210,7 @@ const Informes = () => {
     const ItemFiltroDisponible = ({ filtro }) => {
         return (
             <div className={styles.itemFiltroDisponible}>
-                <span>{filtro.nombre}</span>
+                <span>{filtro.nombreFiltro}</span>
                 <div>
                     <button title='Aplicar filtro' onClick={() => aplicarFiltro(filtro.idFiltro)}>Aplicar</button>
                     <button title='Eliminar filtro' onClick={() => eliminarFiltro(filtro.idFiltro)}><FontAwesomeIcon icon={faXmark} /></button>
@@ -162,7 +225,7 @@ const Informes = () => {
             <div className={styles.listado}>
                 <div className={styles.toolbar}>
                     <div className={styles.toolbar__filtro__container}>
-                        <input type="text" placeholder='Codigo Producto' onChange={(e) => setCodigoProducto(e.target.value)} ref={input_codigoProducto} />
+                        <input type="text" placeholder='ID Producto' onChange={(e) => setIdProducto(e.target.value)} ref={input_idProducto} />
                         <input type="date" title='Fecha desde' onChange={(e) => setFechaDesde(e.target.valueAsDate)} ref={input_fechaDesde} />
                         <input type="date" title='Fecha hasta' onChange={(e) => setFechaHasta(e.target.valueAsDate)} ref={input_fechaHasta} />
 
@@ -174,6 +237,9 @@ const Informes = () => {
                             <option value="RECHAZADA">Rechazadas</option>
                         </select>
                         <input type="text" placeholder='Código Tienda' onChange={(e) => setCodigoTienda(e.target.value)} ref={input_codigoTienda} hidden={!deCentral} />
+                        <button onClick={generarInforme} className={styles.btnBuscar}>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
                     </div>
                     <div className={styles.btnGestionFiltros}>
                         <button title='Guardar filtro actual' onClick={btnGuardarFiltro_onClick}>
@@ -191,7 +257,7 @@ const Informes = () => {
                 <table className={styles.tabla}>
                     <thead className={styles.tabla_encabezado}>
                         <tr>
-                            <th>Código Producto</th>
+                            <th>Producto</th>
                             <th>Código Tienda</th>
                             <th>Estado</th>
                             <th>Cantidad</th>

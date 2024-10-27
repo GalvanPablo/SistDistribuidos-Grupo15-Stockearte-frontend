@@ -69,3 +69,11 @@ export const API_CATALOGO = {
     PRODUCTO_ASGINAR: API_URL_2 + 'api/catalogos/asignar',
     PRODUCTO_DESASGINAR: API_URL_2 + 'api/catalogos/desasignar'
 }
+
+export const API_INFORMES = {
+    INFORME: API_URL_2 + 'api/informes',
+    FILTROS: API_URL_2 + 'api/filtros/listar',
+    FILTRO_CREAR: API_URL_2 + 'api/filtros/crear',
+    FILTRO_EDITAR: API_URL_2 + 'api/filtros/editar',
+    FILTRO_ELIMINAR: API_URL_2 + 'api/filtros/eliminar',
+}
