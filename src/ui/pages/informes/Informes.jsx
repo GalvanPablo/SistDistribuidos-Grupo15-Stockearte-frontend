@@ -199,7 +199,7 @@ const Informes = () => {
     const Item = ({ informe }) => {
         return (
             <tr>
-                <td>{informe.nombreProducto}</td>
+                <td>{informe.nombreProducto} - {informe.talle} - {informe.color}</td>
                 <td>{informe.codigoTienda}</td>
                 <td>{informe.estado}</td>
                 <td>{informe.cantidad}</td>
